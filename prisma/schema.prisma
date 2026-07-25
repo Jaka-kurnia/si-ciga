@@ -1,0 +1,43 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Berita {
+  id        Int      @id @default(autoincrement())
+  title     String
+  date      String
+  category  String
+  image     String
+  excerpt   String   @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Statistik {
+  id       Int    @id @default(autoincrement())
+  label    String @unique
+  count    String
+  iconName String
+}
+
+model Identitas {
+  id    Int    @id @default(autoincrement())
+  key   String @unique
+  label String
+  value String
+}
+
+model Prestasi {
+  id       Int      @id @default(autoincrement())
+  title    String
+  category String
+  message  String   @db.Text
+  students String   @db.Text
+  quote    String   @db.Text
+  footer   String   @db.Text
+}

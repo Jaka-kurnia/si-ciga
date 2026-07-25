@@ -9,8 +9,11 @@ export default function Navbar() {
     <nav className="sticky top-0 z-50 bg-navy text-white shadow-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
-          <div className="shrink-0 font-poppins font-bold text-xl text-gold">
-            SDN 1 Cigalontang
+          <div className="shrink-0 flex items-center gap-3">
+            <img src="/logo/logo.png" alt="Logo SDN 1 Cigalontang" className="h-10 w-auto" />
+            <span className="font-poppins font-bold text-lg sm:text-xl text-gold">
+              SDN 1 Cigalontang
+            </span>
           </div>
           <div className="hidden md:flex space-x-8">
             <a href="#beranda" className="relative hover:text-gold transition-colors py-1 after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-gold after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left">Beranda</a>

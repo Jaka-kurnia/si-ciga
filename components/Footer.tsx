@@ -1,6 +1,25 @@
-import { MapPin, Phone, Mail,  } from "lucide-react";
+"use client";
+import { useState, useEffect } from "react";
+import { MapPin, Phone, Mail } from "lucide-react";
 
 export default function Footer() {
+  const [phone, setPhone] = useState("085322363039");
+  const [email, setEmail] = useState("iwakartiwa52@gmail.com");
+
+  useEffect(() => {
+    fetch("/api/identitas")
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.success && result.data) {
+          const foundPhone = result.data.find((i: any) => i.key === "telepon" || i.label === "Telepon");
+          const foundEmail = result.data.find((i: any) => i.key === "email" || i.label === "Email");
+          if (foundPhone) setPhone(foundPhone.value);
+          if (foundEmail) setEmail(foundEmail.value);
+        }
+      })
+      .catch((err) => console.error("Error fetching footer info from MySQL:", err));
+  }, []);
+
   return (
     <footer className="bg-navy text-white pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -40,11 +59,11 @@ export default function Footer() {
               </li>
               <li className="flex items-center">
                 <Phone size={20} className="text-gold mr-3 shrink-0" />
-                <span>085322363039</span>
+                <span>{phone}</span>
               </li>
               <li className="flex items-center">
                 <Mail size={20} className="text-gold mr-3 shrink-0" />
-                <span>iwakartiwa52@gmail.com</span>
+                <span>{email}</span>
               </li>
             </ul>
           </div>

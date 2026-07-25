@@ -1,7 +1,9 @@
+"use client";
+import { useState, useEffect, ReactNode } from "react";
 import { Award, Building2, Hash, BookOpen, Phone, Mail } from "lucide-react";
 
 export default function TentangKami() {
-  const identityData = [
+  const defaultIdentity = [
     { label: "Akreditasi", value: "B", icon: <Award size={24} className="text-gold" /> },
     { label: "Status Sekolah", value: "Negeri", icon: <Building2 size={24} className="text-gold" /> },
     { label: "NPSN", value: "20262428", icon: <Hash size={24} className="text-gold" /> },
@@ -9,6 +11,32 @@ export default function TentangKami() {
     { label: "Telepon", value: "085322363039", icon: <Phone size={24} className="text-gold" /> },
     { label: "Email", value: "iwakartiwa52@gmail.com", icon: <Mail size={24} className="text-gold" /> },
   ];
+
+  const [identityData, setIdentityData] = useState(defaultIdentity);
+
+  useEffect(() => {
+    fetch("/api/identitas")
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.success && result.data && result.data.length > 0) {
+          const iconMap: Record<string, ReactNode> = {
+            "Akreditasi": <Award size={24} className="text-gold" />,
+            "Status Sekolah": <Building2 size={24} className="text-gold" />,
+            "NPSN": <Hash size={24} className="text-gold" />,
+            "Bentuk Pendidikan": <BookOpen size={24} className="text-gold" />,
+            "Telepon": <Phone size={24} className="text-gold" />,
+            "Email": <Mail size={24} className="text-gold" />,
+          };
+          const dynamicData = result.data.map((item: any, index: number) => ({
+            label: item.label,
+            value: item.value,
+            icon: iconMap[item.label] || defaultIdentity[index]?.icon || <Award size={24} className="text-gold" />,
+          }));
+          setIdentityData(dynamicData);
+        }
+      })
+      .catch((err) => console.error("Error fetching identitas from MySQL:", err));
+  }, []);
 
   return (
     <section id="tentang" className="py-20 bg-gray-50 text-gray-800">

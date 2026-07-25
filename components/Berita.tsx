@@ -6,7 +6,7 @@ export default function Berita() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [cardsToShow, setCardsToShow] = useState(3);
 
-  const beritaList = [
+  const [beritaList, setBeritaList] = useState([
     {
       title: "Pembiasaan Shalat Dhuha & Doa Bersama Pagi",
       date: "24 Juli 2026",
@@ -49,7 +49,19 @@ export default function Berita() {
       image: "/fotoBerita/upacara2.jpeg",
       excerpt: "Implementasi nyata profil pelajar Pancasila melalui kegiatan kebersamaan dan kedisiplinan di lingkungan sekolah SDN 1 Cigalontang."
     }
-  ];
+  ]);
+
+  // Ambil data dinamis dari database MySQL
+  useEffect(() => {
+    fetch("/api/berita")
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.success && result.data && result.data.length > 0) {
+          setBeritaList(result.data);
+        }
+      })
+      .catch((err) => console.error("Error fetching berita from MySQL:", err));
+  }, []);
 
   // Sesuaikan jumlah card berdasarkan ukuran layar
   useEffect(() => {
