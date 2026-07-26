@@ -33,16 +33,19 @@ export default function Hero() {
         ></div>
       ))}
       
-      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-        <h1 className="text-4xl md:text-6xl font-poppins font-bold mb-6 leading-tight drop-shadow-lg">
-          Selamat Datang di <br className="hidden md:block"/>
-          <span className="text-gold">SDN 1 Cigalontang</span>
+      {/* Content overlay */}
+      <div className="relative z-10 text-center px-4 max-w-4xl" data-aos="fade-up" data-aos-duration="1200">
+        <h1 className="text-4xl md:text-6xl font-poppins font-bold mb-6 text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] leading-tight">
+          Selamat Datang di <span className="text-gold block mt-2">SD Negeri 1 Cigalontang</span>
         </h1>
         <p className="text-lg md:text-xl font-roboto mb-10 text-gray-200 drop-shadow-md">
-          Mencetak generasi cerdas, berkarakter, dan berprestasi untuk masa depan gemilang.
+          Membangun Generasi Unggul, Berkarakter, dan Berprestasi untuk Masa Depan yang Gemilang.
         </p>
-        <a href="#tentang" className="inline-block bg-gold text-navy font-bold py-3 px-8 rounded-full hover:bg-white hover:text-navy transition-all duration-300 transform hover:scale-105 shadow-lg">
-          Pelajari Lebih Lanjut
+        <a 
+          href="#tentang" 
+          className="inline-block bg-gold hover:bg-yellow-500 text-navy font-bold py-3 px-8 rounded-full transition-transform transform hover:scale-105 shadow-[0_4px_14px_0_rgba(232,160,32,0.39)]"
+        >
+          Jelajahi Profil
         </a>
       </div>
     </section>

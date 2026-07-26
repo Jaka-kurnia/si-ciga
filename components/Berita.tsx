@@ -107,7 +107,7 @@ export default function Berita() {
 
   return (
     <section id="berita" className="py-20 bg-white relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16" data-aos="fade-up">
         <h2 className="text-3xl font-poppins font-bold text-navy">Berita & Kegiatan Sekolah</h2>
         <div className="w-24 h-1 bg-gold mx-auto mt-4 rounded-full"></div>
         <p className="font-roboto text-gray-600 max-w-2xl mx-auto mt-4 text-sm sm:text-base">
@@ -115,7 +115,7 @@ export default function Berita() {
         </p>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative" data-aos="fade-up" data-aos-delay="200">
         {/* Tombol Kontrol Kiri */}
         <button 
           onClick={handlePrev}
@@ -155,7 +155,7 @@ export default function Berita() {
                       alt={item.title} 
                       className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <div className="absolute top-4 left-4 bg-navy/90 text-gold font-poppins text-xs font-bold px-3 py-1.5 rounded-full uppercase shadow-md tracking-wider">
                       {item.category}
                     </div>

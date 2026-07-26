@@ -39,10 +39,10 @@ export default function TentangKami() {
   }, []);
 
   return (
-    <section id="tentang" className="py-20 bg-gray-50 text-gray-800">
+    <section id="tentang" className="py-20 bg-gray-50 text-gray-800 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-center gap-12 mb-16">
-          <div className="w-full md:w-1/2">
+          <div className="w-full md:w-1/2" data-aos="fade-right">
             <div className="aspect-video bg-gray-300 rounded-2xl overflow-hidden shadow-xl relative group">
               <img 
                 src="/fotoSekolah/foto2.jpg" 
@@ -51,7 +51,7 @@ export default function TentangKami() {
               />
             </div>
           </div>
-          <div className="w-full md:w-1/2">
+          <div className="w-full md:w-1/2" data-aos="fade-left">
             <h2 className="text-3xl font-poppins font-bold text-navy mb-4">
               Tentang Kami
             </h2>
@@ -66,14 +66,19 @@ export default function TentangKami() {
         </div>
 
         {/* Card Identitas Sekolah */}
-        <div className="bg-white rounded-3xl p-5 sm:p-8 md:p-10 shadow-[0_10px_30px_rgba(0,0,0,0.05)] border border-gray-100">
+        <div className="bg-white rounded-3xl p-5 sm:p-8 md:p-10 shadow-[0_10px_30px_rgba(0,0,0,0.05)] border border-gray-100" data-aos="fade-up">
           <div className="text-center mb-8">
             <h3 className="text-2xl font-poppins font-bold text-navy">Identitas Sekolah</h3>
             <div className="w-16 h-1 bg-gold mx-auto mt-2 rounded-full"></div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {identityData.map((item, index) => (
-              <div key={index} className="flex items-start sm:items-center p-4 sm:p-5 bg-gray-50 rounded-2xl border border-gray-100 hover:border-gold/50 hover:shadow-md transition-all duration-300 group">
+              <div 
+                key={index} 
+                data-aos="fade-up" 
+                data-aos-delay={index * 100}
+                className="flex items-start sm:items-center p-4 sm:p-5 bg-gray-50 rounded-2xl border border-gray-100 hover:border-gold/50 hover:shadow-md transition-all duration-300 group"
+              >
                 <div className="w-12 h-12 rounded-xl bg-navy/10 flex items-center justify-center mr-3 sm:mr-4 shrink-0 group-hover:scale-110 transition-transform">
                   {item.icon}
                 </div>
