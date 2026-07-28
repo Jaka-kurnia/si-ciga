@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
@@ -10,20 +11,22 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           <div className="shrink-0 flex items-center gap-3">
-            <img src="/logo/logo.png" alt="Logo SDN 1 Cigalontang" className="h-10 w-auto" />
+            <Image src="/logo/logo.png" alt="Logo SDN 1 Cigalontang" width={40} height={40} className="h-10 w-auto" />
             <span className="font-poppins font-bold text-lg sm:text-xl text-gold">
               SDN 1 Cigalontang
             </span>
           </div>
           <div className="hidden md:flex space-x-8">
             <a href="#beranda" className="relative hover:text-gold transition-colors py-1 after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-gold after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left">Beranda</a>
-            <a href="#tentang" className="relative hover:text-gold transition-colors py-1 after:absolute after:-bottom-1 after:left-0 after:w-full after:0.5 after:bg-gold after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left">Tentang Kami</a>
             <a href="#visimisi" className="relative hover:text-gold transition-colors py-1 after:absolute after:-bottom-1 after:left-0 after:w-full after:0.5 after:bg-gold after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left">Visi & Misi</a>
             <a href="#prestasi" className="relative hover:text-gold transition-colors py-1 after:absolute after:-bottom-1 after:left-0 after:w-full after:0.5 after:bg-gold after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left">Prestasi</a>
             <a href="#berita" className="relative hover:text-gold transition-colors py-1 after:absolute after:-bottom-1 after:left-0 after:w-full after:0.5 after:bg-gold after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left">Berita</a>
             <a href="#galeri" className="relative hover:text-gold transition-colors py-1 after:absolute after:-bottom-1 after:left-0 after:w-full after:0.5 after:bg-gold after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left">Galeri</a>
             <a href="#tim" className="relative hover:text-gold transition-colors py-1 after:absolute after:-bottom-1 after:left-0 after:w-full after:0.5 after:bg-gold after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left">Tim Pengajar</a>
             <a href="#lokasi" className="relative hover:text-gold transition-colors py-1 after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-gold after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left">Lokasi</a>
+            <a href="/admin" className="relative hover:text-gold transition-colors py-1 after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-gold after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left">
+              Login
+            </a>
           </div>
           <div className="md:hidden flex items-center">
             <button onClick={() => setIsOpen(!isOpen)} className="text-white hover:text-gold">
@@ -43,6 +46,11 @@ export default function Navbar() {
           <a href="#galeri" onClick={() => setIsOpen(false)} className="block w-full text-base font-medium py-2 hover:text-gold transition-colors border-b border-white/5">Galeri</a>
           <a href="#tim" onClick={() => setIsOpen(false)} className="block w-full text-base font-medium py-2 hover:text-gold transition-colors border-b border-white/5">Tim Pengajar</a>
           <a href="#lokasi" onClick={() => setIsOpen(false)} className="block w-full text-base font-medium py-2 hover:text-gold transition-colors">Lokasi</a>
+          <div className="pt-2">
+            <a href="/admin" className="flex items-center justify-center gap-2 w-full text-base font-bold py-3 bg-gold hover:bg-yellow-500 text-navy rounded-full transition-colors shadow-md mt-2">
+              🔒 Login Admin
+            </a>
+          </div>
         </div>
       )}
     </nav>

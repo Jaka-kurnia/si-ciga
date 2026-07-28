@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { Upload } from "lucide-react";
 import Swal from "sweetalert2";
 
@@ -88,7 +89,9 @@ export default function TabProfil() {
           <label className="block text-sm font-bold text-gray-700 mb-2">Foto Profil (Upload)</label>
           {form.image && (
             <div className="mb-4 rounded-xl overflow-hidden max-w-xs border border-gray-200 shadow-sm">
-              <img src={form.image} alt="Preview" className="w-full h-40 object-cover" />
+              <div className="relative w-full h-40">
+                <Image src={form.image} alt="Preview" fill className="object-cover" sizes="320px" />
+              </div>
             </div>
           )}
           <div className="flex gap-3 items-center">

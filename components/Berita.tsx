@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { Calendar, ArrowLeft, ArrowRight } from "lucide-react";
 
 export default function Berita() {
@@ -150,10 +151,12 @@ export default function Berita() {
               >
                 <div className="bg-white rounded-3xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.12)] transition-all duration-500 border border-gray-100 flex flex-col h-full group">
                   <div className="relative aspect-16/10 sm:aspect-4/3 overflow-hidden bg-gray-100">
-                    <img 
+                    <Image 
                       src={item.image} 
                       alt={item.title} 
-                      className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                      fill
+                      className="object-cover transform group-hover:scale-110 transition-transform duration-700"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
                     <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <div className="absolute top-4 left-4 bg-navy/90 text-gold font-poppins text-xs font-bold px-3 py-1.5 rounded-full uppercase shadow-md tracking-wider">

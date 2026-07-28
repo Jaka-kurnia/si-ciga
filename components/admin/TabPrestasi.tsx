@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { Plus, Trash2, Edit3, X, Trophy } from "lucide-react";
 import Swal from "sweetalert2";
 
@@ -135,8 +136,8 @@ export default function TabPrestasi() {
           <div key={item.id} className="p-5 rounded-2xl border-2 border-gray-100 bg-white shadow-sm flex flex-col justify-between">
             <div>
               {item.image && (
-                <div className="w-full h-48 bg-gray-100 rounded-xl mb-4 overflow-hidden">
-                  <img src={item.image} alt="Prestasi" className="w-full h-full object-cover" />
+                <div className="relative w-full h-48 bg-gray-100 rounded-xl mb-4 overflow-hidden">
+                  <Image src={item.image} alt="Prestasi" fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
                 </div>
               )}
               <div className="flex items-center gap-2 mb-2">
@@ -161,7 +162,7 @@ export default function TabPrestasi() {
       </div>
 
       {isModalOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-gray-900/50">
+        <div className="fixed inset-0 z-100 flex items-center justify-center p-4 bg-gray-900/50">
           <div className="bg-white rounded-3xl w-full max-w-3xl p-6 md:p-8 max-h-[90vh] overflow-y-auto">
             <div className="flex justify-between items-center mb-6">
               <h3 className="text-xl font-bold">{editingId ? "Edit" : "Tambah"} Prestasi</h3>
@@ -172,8 +173,8 @@ export default function TabPrestasi() {
               <div>
                 <label className="block text-sm font-bold mb-2">Foto Prestasi (Opsional)</label>
                 {form.image && (
-                  <div className="mb-3 rounded-xl overflow-hidden w-full max-w-sm h-48 border border-gray-200 shadow-sm">
-                    <img src={form.image} alt="Preview" className="w-full h-full object-cover" />
+                  <div className="mb-3 rounded-xl overflow-hidden w-full max-w-sm h-48 border border-gray-200 shadow-sm relative">
+                    <Image src={form.image} alt="Preview" fill className="object-cover" sizes="384px" />
                   </div>
                 )}
                 <div className="flex gap-3 items-center">

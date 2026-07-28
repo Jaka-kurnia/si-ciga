@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { Plus, Trash2, Edit3, X } from "lucide-react";
 import Swal from "sweetalert2";
 
@@ -189,7 +190,9 @@ export default function TabPengajar() {
                 <label className="block text-sm font-bold mb-2">Foto Profile (Upload)</label>
                 {form.image && (
                   <div className="mb-3 rounded-xl overflow-hidden w-24 h-24 border border-gray-200 shadow-sm">
-                    <img src={form.image} alt="Preview" className="w-full h-full object-cover" />
+                  <div className="relative w-full h-full">
+                    <Image src={form.image} alt="Preview" fill className="object-cover" sizes="96px" />
+                  </div>
                   </div>
                 )}
                 <div className="flex gap-3 items-center">

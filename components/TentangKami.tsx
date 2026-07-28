@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect, ReactNode } from "react";
+import Image from "next/image";
 import { Award, Building2, Hash, BookOpen, Phone, Mail } from "lucide-react";
 
 export default function TentangKami() {
@@ -65,10 +66,12 @@ export default function TentangKami() {
         <div className="flex flex-col md:flex-row items-center gap-12 mb-16">
           <div className="w-full md:w-1/2" data-aos="fade-right">
             <div className="aspect-video bg-gray-300 rounded-2xl overflow-hidden shadow-xl relative group">
-              <img 
+              <Image 
                 src={profilData.image} 
                 alt="Gedung Sekolah" 
-                className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                fill
+                className="object-cover transform group-hover:scale-105 transition-transform duration-700"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
           </div>

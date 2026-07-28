@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { Trophy, Medal, Award, X } from "lucide-react";
 import SectionHeader from "./SectionHeader";
 
@@ -40,10 +41,12 @@ export default function Prestasi() {
                 {/* Bagian Foto Kiri */}
                 <div className="md:w-5/12 h-64 md:h-auto min-h-75 relative overflow-hidden bg-gray-100 shrink-0">
                   {item.image ? (
-                    <img 
+                    <Image 
                       src={item.image} 
                       alt={item.title}
-                      className="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" 
+                      fill
+                      className="object-cover transform group-hover:scale-105 transition-transform duration-700"
+                      sizes="(max-width: 768px) 100vw, 50vw"
                     />
                   ) : (
                     <div className="absolute inset-0 flex items-center justify-center bg-gray-200">
@@ -88,45 +91,77 @@ export default function Prestasi() {
 
       {/* Modal Detail Prestasi */}
       {selectedPrestasi !== null && prestasi[selectedPrestasi] && (
-        <div className="fixed inset-0 z-100 flex items-center justify-center p-3 sm:p-4">
-          <div className="absolute inset-0 bg-navy/60 backdrop-blur-sm transition-opacity" onClick={handleClose}></div>
-          <div className="relative bg-white rounded-2xl sm:rounded-3xl w-full max-w-3xl max-h-[92vh] overflow-y-auto shadow-2xl p-5 sm:p-8 md:p-12 animate-in fade-in zoom-in duration-300">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
+          <div className="absolute inset-0 bg-navy/80 backdrop-blur-md transition-opacity" onClick={handleClose}></div>
+          <div className="relative bg-white rounded-3xl w-full max-w-4xl max-h-[95vh] overflow-hidden shadow-2xl animate-in zoom-in-95 duration-300 flex flex-col">
+            
+            {/* Tombol Close */}
             <button 
               onClick={handleClose}
-              className="absolute top-4 sm:top-6 right-4 sm:right-6 text-gray-400 hover:text-navy transition-colors bg-gray-100 hover:bg-gray-200 p-2 rounded-full z-10"
+              className="absolute top-4 right-4 sm:top-6 sm:right-6 text-white hover:text-navy transition-colors bg-black/20 hover:bg-white backdrop-blur-md p-2.5 rounded-full z-20 shadow-lg"
             >
-              <X size={20} className="sm:w-6 sm:h-6" />
+              <X size={24} />
             </button>
             
-            <div className="text-center mt-2 sm:mt-4">
-              <div className="inline-flex items-center justify-center w-16 h-16 sm:w-24 sm:h-24 rounded-full bg-gold/10 text-gold mb-4 sm:mb-6 shadow-sm border border-gold/20">
-                <Trophy size={36} className="sm:w-12 sm:h-12" />
-              </div>
+            {/* Cover Image / Banner */}
+            <div className="relative h-64 sm:h-80 w-full shrink-0 bg-navy">
+              {prestasi[selectedPrestasi].image ? (
+                <Image 
+                  src={prestasi[selectedPrestasi].image} 
+                  alt="Foto Prestasi" 
+                  fill
+                  className="object-cover"
+                  sizes="100vw"
+                />
+              ) : (
+                <div className="absolute inset-0 flex items-center justify-center">
+                   <Trophy size={80} className="text-white/10" />
+                </div>
+              )}
+              {/* Gradient Masking */}
+              <div className="absolute inset-0 bg-gradient-to-t from-white via-white/20 to-transparent"></div>
               
-              <h3 className="text-2xl sm:text-3xl md:text-4xl font-poppins font-bold text-navy mb-4 sm:mb-6">
+              <div className="absolute bottom-0 left-0 w-full flex justify-center translate-y-1/2 z-10">
+                 <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-white shadow-xl border-4 border-white flex items-center justify-center">
+                   <Trophy size={40} className="text-gold sm:w-12 sm:h-12" />
+                 </div>
+              </div>
+            </div>
+
+            {/* Konten Scrollable */}
+            <div className="overflow-y-auto flex-1 p-6 sm:p-10 pt-14 sm:pt-16 text-center relative z-10 bg-white">
+              <h3 className="text-2xl sm:text-4xl font-poppins font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-navy to-gold mb-3 uppercase tracking-wider drop-shadow-sm">
                 SELAMAT & SUKSES
               </h3>
               
-              <p className="font-roboto text-gray-700 leading-relaxed text-sm sm:text-lg mb-6 sm:mb-8 sm:px-8">
+              <h4 className="text-lg sm:text-2xl font-bold text-gray-800 mb-6 sm:mb-8 font-poppins max-w-3xl mx-auto">
+                {prestasi[selectedPrestasi].title}
+              </h4>
+              
+              <p className="font-roboto text-gray-600 leading-relaxed text-base sm:text-lg mb-8 max-w-2xl mx-auto bg-gray-50 p-6 rounded-3xl border border-gray-100 shadow-inner">
                 {prestasi[selectedPrestasi].message}
               </p>
               
-              <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-10 max-w-2xl mx-auto">
+              <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-10 max-w-3xl mx-auto">
                 {prestasi[selectedPrestasi].students?.split(",").map((name: string, idx: number) => (
-                  <div key={idx} className="bg-gray-50 border border-gray-200 px-3 sm:px-5 py-2 sm:py-2.5 rounded-xl flex items-center shadow-sm text-xs sm:text-base">
-                    <span className="text-gold mr-1.5 sm:mr-2 text-base sm:text-xl">✨</span>
-                    <span className="font-poppins font-bold text-navy">{name.trim()}</span>
+                  <div key={idx} className="bg-white border-2 border-gold/30 px-5 py-2.5 sm:py-3 rounded-2xl flex items-center shadow-sm hover:shadow-lg hover:border-gold hover:-translate-y-1 transition-all duration-300">
+                    <span className="text-gold mr-2 text-xl drop-shadow-sm">✨</span>
+                    <span className="font-poppins font-bold text-navy text-sm sm:text-base">{name.trim()}</span>
                   </div>
                 ))}
               </div>
               
-              <p className="font-roboto text-gray-700 leading-relaxed italic mb-8 sm:mb-10 text-sm sm:text-lg px-2">
-                "{prestasi[selectedPrestasi].quote}"
-              </p>
+              <div className="relative max-w-2xl mx-auto mb-10">
+                <span className="absolute -top-6 -left-4 sm:-left-8 text-6xl text-gold/20 font-serif select-none">"</span>
+                <p className="font-roboto text-gray-700 leading-relaxed italic text-lg sm:text-xl relative z-10 px-4">
+                  {prestasi[selectedPrestasi].quote}
+                </p>
+                <span className="absolute -bottom-10 -right-4 sm:-right-8 text-6xl text-gold/20 font-serif select-none">"</span>
+              </div>
               
-              <div className="w-16 sm:w-24 h-1 bg-gray-200 mx-auto mb-8 sm:mb-10 rounded-full"></div>
+              <div className="w-24 h-1.5 bg-gradient-to-r from-transparent via-gray-200 to-transparent mx-auto mb-8 rounded-full"></div>
               
-              <p className="font-roboto text-gray-500 leading-relaxed max-w-2xl mx-auto text-xs sm:text-base">
+              <p className="font-roboto text-gray-400 leading-relaxed max-w-2xl mx-auto text-xs sm:text-sm tracking-wide">
                 {prestasi[selectedPrestasi].footer}
               </p>
             </div>

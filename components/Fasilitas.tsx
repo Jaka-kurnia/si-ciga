@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Fasilitas() {
   const fasilitas = [
     {
@@ -29,10 +31,12 @@ export default function Fasilitas() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {fasilitas.map((item, index) => (
             <div key={index} className="relative rounded-2xl overflow-hidden group aspect-4/3 shadow-lg cursor-pointer">
-              <img 
+              <Image 
                 src={item.image} 
                 alt={item.name} 
-                className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                fill
+                className="object-cover transform group-hover:scale-110 transition-transform duration-700"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
               />
               <div className="absolute inset-0 bg-linear-to-t from-navy/90 via-navy/40 to-transparent flex flex-col justify-end p-6">
                 <h3 className="text-white font-poppins font-bold text-lg transform translate-y-2 group-hover:translate-y-0 transition-transform">{item.name}</h3>

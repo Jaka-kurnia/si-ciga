@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 export default function TimPengajar() {
   const [headMaster, setHeadMaster] = useState<any>(null);
@@ -36,10 +37,12 @@ export default function TimPengajar() {
             <div className="w-full sm:w-105 bg-white rounded-3xl p-6 shadow-[0_15px_40px_rgba(0,0,0,0.06)] border border-gray-100 flex flex-col items-center text-center relative mt-12 z-20 hover:-translate-y-1 transition-transform duration-300">
               {/* Foto Profil Pimpinan */}
               <div className="absolute -top-12 w-24 h-24 bg-gray-100 rounded-full border-4 border-white shadow-md overflow-hidden">
-                <img 
+                <Image 
                   src={headMaster.image || `https://ui-avatars.com/api/?name=${encodeURIComponent(headMaster.name)}&background=0D2B5E&color=E8A020&size=256&font-size=0.33`}
                   alt={headMaster.name} 
-                  className="w-full h-full object-cover" 
+                  fill
+                  className="object-cover" 
+                  sizes="96px"
                 />
               </div>
               
@@ -77,10 +80,12 @@ export default function TimPengajar() {
             >
               {/* Foto Profil Anggota */}
               <div className="absolute -top-10 w-20 h-20 bg-gray-100 rounded-full border-4 border-white shadow-sm overflow-hidden group-hover:scale-105 transition-transform duration-300">
-                <img 
+                <Image 
                   src={staff.image || `https://ui-avatars.com/api/?name=${encodeURIComponent(staff.name)}&background=f1f5f9&color=0D2B5E&size=256&font-size=0.33`}
                   alt={staff.name} 
-                  className="w-full h-full object-cover" 
+                  fill
+                  className="object-cover" 
+                  sizes="80px"
                 />
               </div>
 
