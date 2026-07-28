@@ -36,8 +36,35 @@ model Prestasi {
   id       Int      @id @default(autoincrement())
   title    String
   category String
+  image    String?
   message  String   @db.Text
   students String   @db.Text
   quote    String   @db.Text
   footer   String   @db.Text
+}
+model Profil {
+  id      Int    @id @default(autoincrement())
+  key     String @unique
+  content String @db.Text
+}
+
+model VisiMisi {
+  id      Int    @id @default(autoincrement())
+  type    String // 'visi' or 'misi'
+  content String @db.Text
+  order   Int    @default(0)
+}
+
+model Pengajar {
+  id           Int      @id @default(autoincrement())
+  name         String
+  nip          String
+  jabatan      String
+  penugasan    String
+  sasaran      String
+  image        String?
+  isHeadmaster Boolean  @default(false)
+  order        Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }

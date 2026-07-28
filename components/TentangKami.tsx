@@ -13,6 +13,11 @@ export default function TentangKami() {
   ];
 
   const [identityData, setIdentityData] = useState(defaultIdentity);
+  const [profilData, setProfilData] = useState({
+    paragraf1: "Memuat profil...",
+    paragraf2: "",
+    image: "/fotoSekolah/foto2.jpg"
+  });
 
   useEffect(() => {
     fetch("/api/identitas")
@@ -35,7 +40,23 @@ export default function TentangKami() {
           setIdentityData(dynamicData);
         }
       })
-      .catch((err) => console.error("Error fetching identitas from MySQL:", err));
+      .catch((err) => console.error("Gagal mengambil data identitas", err));
+
+    fetch("/api/profil")
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.success && result.data) {
+          const p1 = result.data.find((d: any) => d.key === "paragraf1")?.content;
+          const p2 = result.data.find((d: any) => d.key === "paragraf2")?.content;
+          const img = result.data.find((d: any) => d.key === "image")?.content;
+          setProfilData(prev => ({
+            paragraf1: p1 || prev.paragraf1,
+            paragraf2: p2 || prev.paragraf2,
+            image: img || prev.image
+          }));
+        }
+      })
+      .catch((err) => console.error("Gagal mengambil profil", err));
   }, []);
 
   return (
@@ -45,7 +66,7 @@ export default function TentangKami() {
           <div className="w-full md:w-1/2" data-aos="fade-right">
             <div className="aspect-video bg-gray-300 rounded-2xl overflow-hidden shadow-xl relative group">
               <img 
-                src="/fotoSekolah/foto2.jpg" 
+                src={profilData.image} 
                 alt="Gedung Sekolah" 
                 className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
               />
@@ -56,11 +77,11 @@ export default function TentangKami() {
               Tentang Kami
             </h2>
             <div className="w-20 h-1 bg-gold mb-6 rounded-full"></div>
-            <p className="font-roboto text-gray-600 mb-4 leading-relaxed">
-              SD Negeri 1 Cigalontang adalah institusi pendidikan dasar yang berkomitmen memberikan pelayanan pendidikan terbaik bagi masyarakat. Kami berdiri dengan dedikasi untuk membina karakter dan potensi setiap siswa.
+            <p className="font-roboto text-gray-600 mb-4 leading-relaxed whitespace-pre-wrap">
+              {profilData.paragraf1}
             </p>
-            <p className="font-roboto text-gray-600 leading-relaxed">
-              Dengan lingkungan belajar yang kondusif dan tenaga pendidik yang profesional, kami siap mengantarkan putra-putri Anda menuju gerbang kesuksesan di masa depan, berlandaskan nilai-nilai luhur dan integritas tinggi.
+            <p className="font-roboto text-gray-600 leading-relaxed whitespace-pre-wrap">
+              {profilData.paragraf2}
             </p>
           </div>
         </div>

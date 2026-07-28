@@ -1,13 +1,18 @@
 "use client";
 import { useState, useEffect } from "react";
-import { Newspaper, BarChart2, Building2, Plus, Edit3, Trash2, Check, X, Upload, RefreshCw, Lock, ArrowRight } from "lucide-react";
+import { Newspaper, BarChart2, Building2, Plus, Edit3, Trash2, Check, X, Upload, RefreshCw, Lock, ArrowRight, Users, FileText, Target, Trophy } from "lucide-react";
+import TabProfil from "@/components/admin/TabProfil";
+import TabVisiMisi from "@/components/admin/TabVisiMisi";
+import TabPengajar from "@/components/admin/TabPengajar";
+import TabPrestasi from "@/components/admin/TabPrestasi";
 
 export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [usernameInput, setUsernameInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
   const [loginError, setLoginError] = useState("");
 
-  const [activeTab, setActiveTab] = useState<"berita" | "statistik" | "identitas">("berita");
+  const [activeTab, setActiveTab] = useState<"berita" | "statistik" | "identitas" | "profil" | "visimisi" | "pengajar" | "prestasi">("berita");
   const [loading, setLoading] = useState(false);
   const [statusMessage, setStatusMessage] = useState({ type: "", text: "" });
 
@@ -38,12 +43,12 @@ export default function AdminPage() {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (passwordInput === "admin123") {
+    if (usernameInput === "superadmin.siciga" && passwordInput === "password") {
       localStorage.setItem("cms_auth_siciga", "true");
       setIsAuthenticated(true);
       setLoginError("");
     } else {
-      setLoginError("Kata sandi salah! (Hint default: admin123)");
+      setLoginError("Username atau Kata sandi salah!");
     }
   };
 
@@ -236,40 +241,58 @@ export default function AdminPage() {
   if (!isAuthenticated) {
     return (
       <div className="min-h-[75vh] flex items-center justify-center p-4">
-        <div className="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl border border-gray-100 text-center animate-in fade-in zoom-in duration-300">
-          <div className="w-16 h-16 bg-navy/10 rounded-2xl flex items-center justify-center mx-auto mb-6 text-navy">
-            <Lock size={32} className="text-gold" />
+        <div className="bg-white rounded-[2rem] p-8 sm:p-10 max-w-md w-full shadow-[0_20px_60px_rgba(0,0,0,0.08)] border border-gray-100 text-center animate-in fade-in zoom-in-95 duration-500 relative overflow-hidden">
+          {/* Aksen Background */}
+          <div className="absolute top-0 left-0 w-full h-32 bg-navy/5 -z-10"></div>
+          <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-md border-4 border-white p-2 relative z-10">
+            <img src="/logo/logo.png" alt="Logo SD" className="w-full h-full object-contain" />
           </div>
-          <h2 className="text-2xl font-poppins font-bold text-navy mb-2">Otentikasi CMS Admin</h2>
-          <p className="text-sm font-roboto text-gray-500 mb-6">
-            Masukkan sandi pengelola untuk mengatur konten website SDN 1 Cigalontang
+          <h2 className="text-2xl font-poppins font-bold text-navy mb-2">Login Administrator</h2>
+          <p className="text-sm font-roboto text-gray-500 mb-8 px-2">
+            Masuk menggunakan kredensial superadmin untuk mengelola konten website SDN 1 Cigalontang.
           </p>
           
-          <form onSubmit={handleLogin} className="space-y-4 text-left">
+          <form onSubmit={handleLogin} className="space-y-5 text-left relative z-10">
             <div>
-              <label className="block text-xs font-poppins font-semibold text-gray-700 uppercase tracking-wider mb-2">
-                Kata Sandi Admin
+              <label className="block text-xs font-poppins font-semibold text-gray-700 uppercase tracking-wider mb-2 ml-1">
+                Username
+              </label>
+              <input
+                type="text"
+                value={usernameInput}
+                onChange={(e) => setUsernameInput(e.target.value)}
+                placeholder="Masukkan username..."
+                required
+                className="w-full px-5 py-3.5 rounded-2xl border-2 border-gray-100 bg-gray-50/50 focus:bg-white focus:border-navy focus:ring-4 focus:ring-navy/10 outline-none transition-all text-base font-roboto"
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-poppins font-semibold text-gray-700 uppercase tracking-wider mb-2 ml-1">
+                Kata Sandi
               </label>
               <input
                 type="password"
                 value={passwordInput}
                 onChange={(e) => setPasswordInput(e.target.value)}
-                placeholder="Masukkan password..."
+                placeholder="Masukkan kata sandi..."
                 required
-                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-navy focus:ring-2 focus:ring-navy/20 outline-none transition-all text-base font-roboto"
+                className="w-full px-5 py-3.5 rounded-2xl border-2 border-gray-100 bg-gray-50/50 focus:bg-white focus:border-navy focus:ring-4 focus:ring-navy/10 outline-none transition-all text-base font-roboto"
               />
-              {loginError && <p className="text-red-500 text-xs mt-2 font-medium">{loginError}</p>}
             </div>
+            
+            {loginError && (
+              <div className="bg-red-50 text-red-500 text-sm font-medium py-3 px-4 rounded-xl text-center border border-red-100">
+                {loginError}
+              </div>
+            )}
+            
             <button
               type="submit"
-              className="w-full bg-navy hover:bg-gold hover:text-navy text-white font-poppins font-bold py-3.5 rounded-xl shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 flex items-center justify-center gap-2"
+              className="w-full bg-navy hover:bg-gold text-white hover:text-navy font-poppins font-bold py-4 rounded-2xl shadow-[0_10px_20px_rgba(13,43,94,0.15)] transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-2 mt-4"
             >
-              <span>Masuk CMS</span>
+              <span>Masuk Sistem</span>
               <ArrowRight size={18} />
             </button>
-            <p className="text-center text-xs text-gray-400 mt-4">
-              *Password bawaan: <strong className="text-navy">admin123</strong>
-            </p>
           </form>
         </div>
       </div>
@@ -290,10 +313,8 @@ export default function AdminPage() {
         {/* Sidebar Navigation */}
         <aside className="w-full md:w-72 bg-white rounded-3xl p-5 sm:p-6 shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-gray-100 shrink-0 flex flex-col md:sticky md:top-24">
           <div className="pb-5 border-b border-gray-100 mb-5">
-            <h2 className="text-xl font-poppins font-bold text-navy">Menu CMS</h2>
-            <p className="text-xs text-gray-500 font-roboto mt-1">
-              Terhubung ke <strong className="text-navy">MySQL</strong>
-            </p>
+            <h2 className="text-xl font-poppins font-bold text-navy">Modul CMS</h2>
+           
           </div>
           
           <nav className="flex flex-col space-y-3">
@@ -329,6 +350,54 @@ export default function AdminPage() {
             >
               <Building2 size={18} className={activeTab === "identitas" ? "text-gold" : "text-gray-400"} />
               <span>Identitas & Kontak</span>
+            </button>
+
+            <button
+              onClick={() => setActiveTab("profil")}
+              className={`flex items-center gap-3 px-4 py-3.5 rounded-2xl font-poppins font-semibold text-sm transition-all duration-300 ${
+                activeTab === "profil"
+                  ? "bg-navy text-white shadow-md transform scale-[1.02]"
+                  : "bg-transparent hover:bg-gray-50 text-gray-600 border border-transparent hover:border-gray-200"
+              }`}
+            >
+              <FileText size={18} className={activeTab === "profil" ? "text-gold" : "text-gray-400"} />
+              <span>Profil (Tentang Kami)</span>
+            </button>
+
+            <button
+              onClick={() => setActiveTab("visimisi")}
+              className={`flex items-center gap-3 px-4 py-3.5 rounded-2xl font-poppins font-semibold text-sm transition-all duration-300 ${
+                activeTab === "visimisi"
+                  ? "bg-navy text-white shadow-md transform scale-[1.02]"
+                  : "bg-transparent hover:bg-gray-50 text-gray-600 border border-transparent hover:border-gray-200"
+              }`}
+            >
+              <Target size={18} className={activeTab === "visimisi" ? "text-gold" : "text-gray-400"} />
+              <span>Visi & Misi</span>
+            </button>
+
+            <button
+              onClick={() => setActiveTab("pengajar")}
+              className={`flex items-center gap-3 px-4 py-3.5 rounded-2xl font-poppins font-semibold text-sm transition-all duration-300 ${
+                activeTab === "pengajar"
+                  ? "bg-navy text-white shadow-md transform scale-[1.02]"
+                  : "bg-transparent hover:bg-gray-50 text-gray-600 border border-transparent hover:border-gray-200"
+              }`}
+            >
+              <Users size={18} className={activeTab === "pengajar" ? "text-gold" : "text-gray-400"} />
+              <span>Struktur Tim Pengajar</span>
+            </button>
+
+            <button
+              onClick={() => setActiveTab("prestasi")}
+              className={`flex items-center gap-3 px-4 py-3.5 rounded-2xl font-poppins font-semibold text-sm transition-all duration-300 ${
+                activeTab === "prestasi"
+                  ? "bg-navy text-white shadow-md transform scale-[1.02]"
+                  : "bg-transparent hover:bg-gray-50 text-gray-600 border border-transparent hover:border-gray-200"
+              }`}
+            >
+              <Trophy size={18} className={activeTab === "prestasi" ? "text-gold" : "text-gray-400"} />
+              <span>Prestasi Unggulan</span>
             </button>
           </nav>
 
@@ -617,6 +686,11 @@ export default function AdminPage() {
           </div>
         </div>
       )}
+      
+      {activeTab === "profil" && <TabProfil />}
+      {activeTab === "visimisi" && <TabVisiMisi />}
+      {activeTab === "pengajar" && <TabPengajar />}
+      {activeTab === "prestasi" && <TabPrestasi />}
       
       {/* Penutup Main Content Wrapper */}
       </div>
