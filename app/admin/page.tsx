@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Newspaper, BarChart2, Building2, Plus, Edit3, Trash2, Check, X, Upload, RefreshCw, Lock, ArrowRight, Users, FileText, Target, Trophy } from "lucide-react";
+import Swal from "sweetalert2";
 import TabProfil from "@/components/admin/TabProfil";
 import TabVisiMisi from "@/components/admin/TabVisiMisi";
 import TabPengajar from "@/components/admin/TabPengajar";
@@ -162,7 +163,18 @@ export default function AdminPage() {
   };
 
   const handleDeleteBerita = async (id: number) => {
-    if (!confirm("Apakah Anda yakin ingin menghapus berita ini secara permanen dari MySQL?")) return;
+    const result = await Swal.fire({
+      title: 'Apakah Anda yakin?',
+      text: "Berita yang dihapus tidak dapat dikembalikan!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#0D2B5E',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Ya, hapus!',
+      cancelButtonText: 'Batal'
+    });
+
+    if (!result.isConfirmed) return;
     setLoading(true);
     try {
       const res = await fetch(`/api/berita/${id}`, { method: "DELETE" }).then((r) => r.json());
@@ -241,7 +253,7 @@ export default function AdminPage() {
   if (!isAuthenticated) {
     return (
       <div className="min-h-[75vh] flex items-center justify-center p-4">
-        <div className="bg-white rounded-[2rem] p-8 sm:p-10 max-w-md w-full shadow-[0_20px_60px_rgba(0,0,0,0.08)] border border-gray-100 text-center animate-in fade-in zoom-in-95 duration-500 relative overflow-hidden">
+        <div className="bg-white rounded-4xl p-8 sm:p-10 max-w-md w-full shadow-[0_20px_60px_rgba(0,0,0,0.08)] border border-gray-100 text-center animate-in fade-in zoom-in-95 duration-500 relative overflow-hidden">
           {/* Aksen Background */}
           <div className="absolute top-0 left-0 w-full h-32 bg-navy/5 -z-10"></div>
           <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-md border-4 border-white p-2 relative z-10">
@@ -420,7 +432,7 @@ export default function AdminPage() {
         </aside>
 
         {/* Main Content Area */}
-        <div className="flex-1 w-full bg-white rounded-3xl p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-gray-100 min-h-[600px]">
+        <div className="flex-1 w-full bg-white rounded-3xl p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-gray-100 min-h-150">
           {/* CONTENT: TAB BERITA */}
           {activeTab === "berita" && (
         <div className="space-y-6">

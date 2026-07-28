@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Plus, Trash2, Edit3, X } from "lucide-react";
+import Swal from "sweetalert2";
 
 export default function TabPengajar() {
   const [loading, setLoading] = useState(false);
@@ -60,18 +61,32 @@ export default function TabPengajar() {
       });
       setIsModalOpen(false);
       fetchData();
+      Swal.fire({ icon: 'success', title: 'Berhasil', text: 'Data berhasil disimpan!', timer: 1500, showConfirmButton: false });
     } catch (err) {
-      alert("Gagal menyimpan");
+      Swal.fire({ icon: 'error', title: 'Gagal', text: 'Gagal menyimpan data.' });
     }
   };
 
   const handleDelete = async (id: number) => {
-    if (!confirm("Hapus pengajar ini?")) return;
+    const result = await Swal.fire({
+      title: 'Apakah Anda yakin?',
+      text: "Data yang dihapus tidak dapat dikembalikan!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#0D2B5E',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Ya, hapus!',
+      cancelButtonText: 'Batal'
+    });
+
+    if (!result.isConfirmed) return;
+    
     try {
       await fetch(`/api/pengajar?id=${id}`, { method: "DELETE" });
       fetchData();
+      Swal.fire({ icon: 'success', title: 'Terhapus!', text: 'Data telah dihapus.', timer: 1500, showConfirmButton: false });
     } catch (err) {
-      alert("Gagal menghapus");
+      Swal.fire({ icon: 'error', title: 'Gagal', text: 'Gagal menghapus data!' });
     }
   };
 
@@ -92,10 +107,10 @@ export default function TabPengajar() {
       if (res.success) {
         setForm({ ...form, image: res.url });
       } else {
-        alert(res.error || "Gagal upload");
+        Swal.fire({ icon: 'error', title: 'Gagal', text: res.error || "Gagal upload" });
       }
     } catch (err) {
-      alert("Error uploading file");
+      Swal.fire({ icon: 'error', title: 'Gagal', text: 'Error uploading file' });
     } finally {
       setUploading(false);
     }
@@ -139,7 +154,7 @@ export default function TabPengajar() {
       </div>
 
       {isModalOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-gray-900/50">
+        <div className="fixed inset-0 z-100 flex items-center justify-center p-4 bg-gray-900/50">
           <div className="bg-white rounded-3xl w-full max-w-2xl p-6 md:p-8 max-h-[90vh] overflow-y-auto">
             <div className="flex justify-between items-center mb-6">
               <h3 className="text-xl font-bold">{editingId ? "Edit" : "Tambah"} Staf Pengajar</h3>

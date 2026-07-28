@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
-import { Check, X } from "lucide-react";
+import { Upload } from "lucide-react";
+import Swal from "sweetalert2";
 
 export default function TabProfil() {
   const [loading, setLoading] = useState(false);
@@ -39,11 +40,10 @@ export default function TabProfil() {
       }).then(r => r.json());
       
       if (res.success) {
-        setMessage("Berhasil disimpan!");
-        setTimeout(() => setMessage(""), 3000);
+        Swal.fire({ icon: 'success', title: 'Tersimpan!', text: 'Profil berhasil diperbarui.', timer: 1500, showConfirmButton: false });
       }
     } catch (err) {
-      alert("Gagal menyimpan");
+      Swal.fire({ icon: 'error', title: 'Gagal', text: 'Gagal menyimpan data.' });
     } finally {
       setLoading(false);
     }
@@ -67,10 +67,10 @@ export default function TabProfil() {
         setForm({ ...form, image: res.url });
         handleSave("image", res.url);
       } else {
-        alert(res.error || "Gagal upload");
+        Swal.fire({ icon: 'error', title: 'Gagal', text: res.error || "Gagal upload" });
       }
     } catch (err) {
-      alert("Error uploading file");
+      Swal.fire({ icon: 'error', title: 'Gagal', text: 'Error uploading file' });
     } finally {
       setLoading(false);
     }

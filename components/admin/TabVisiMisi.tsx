@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
-import { Plus, Trash2 } from "lucide-react";
+import { Plus, Trash2, Edit3, X } from "lucide-react";
+import Swal from "sweetalert2";
 
 export default function TabVisiMisi() {
   const [loading, setLoading] = useState(false);
@@ -45,10 +46,10 @@ export default function TabVisiMisi() {
           body: JSON.stringify({ type: "visi", content: visi, order: 0 })
         });
       }
-      alert("Visi berhasil disimpan!");
+      Swal.fire({ icon: 'success', title: 'Berhasil', text: 'Visi berhasil disimpan!', timer: 1500, showConfirmButton: false });
       fetchData();
     } catch (err) {
-      alert("Gagal");
+      Swal.fire({ icon: 'error', title: 'Gagal', text: 'Gagal menyimpan visi.' });
     }
   };
 
@@ -62,18 +63,32 @@ export default function TabVisiMisi() {
       });
       setNewMisi("");
       fetchData();
+      Swal.fire({ icon: 'success', title: 'Berhasil', text: 'Misi berhasil ditambahkan!', timer: 1500, showConfirmButton: false });
     } catch (err) {
-      alert("Gagal menambahkan misi");
+      Swal.fire({ icon: 'error', title: 'Gagal', text: 'Gagal menambahkan misi.' });
     }
   };
 
   const handleDelete = async (id: number) => {
-    if (!confirm("Hapus item ini?")) return;
+    const result = await Swal.fire({
+      title: 'Apakah Anda yakin?',
+      text: "Data yang dihapus tidak dapat dikembalikan!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#0D2B5E',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Ya, hapus!',
+      cancelButtonText: 'Batal'
+    });
+
+    if (!result.isConfirmed) return;
+    
     try {
       await fetch(`/api/visimisi?id=${id}`, { method: "DELETE" });
       fetchData();
+      Swal.fire({ icon: 'success', title: 'Terhapus!', text: 'Misi telah dihapus.', timer: 1500, showConfirmButton: false });
     } catch (err) {
-      alert("Gagal menghapus");
+      Swal.fire({ icon: 'error', title: 'Gagal', text: 'Gagal menghapus misi!' });
     }
   };
 

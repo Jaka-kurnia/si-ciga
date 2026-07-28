@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Plus, Trash2, Edit3, X, Trophy } from "lucide-react";
+import Swal from "sweetalert2";
 
 export default function TabPrestasi() {
   const [loading, setLoading] = useState(false);
@@ -62,18 +63,32 @@ export default function TabPrestasi() {
       });
       setIsModalOpen(false);
       fetchData();
+      Swal.fire({ icon: 'success', title: 'Berhasil', text: 'Data berhasil disimpan!', timer: 1500, showConfirmButton: false });
     } catch (err) {
-      alert("Gagal menyimpan");
+      Swal.fire({ icon: 'error', title: 'Gagal', text: 'Gagal menyimpan data.' });
     }
   };
 
   const handleDelete = async (id: number) => {
-    if (!confirm("Hapus prestasi ini?")) return;
+    const result = await Swal.fire({
+      title: 'Apakah Anda yakin?',
+      text: "Data yang dihapus tidak dapat dikembalikan!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#0D2B5E',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Ya, hapus!',
+      cancelButtonText: 'Batal'
+    });
+
+    if (!result.isConfirmed) return;
+    
     try {
       await fetch(`/api/prestasi?id=${id}`, { method: "DELETE" });
       fetchData();
+      Swal.fire({ icon: 'success', title: 'Terhapus!', text: 'Data telah dihapus.', timer: 1500, showConfirmButton: false });
     } catch (err) {
-      alert("Gagal menghapus");
+      Swal.fire({ icon: 'error', title: 'Gagal', text: 'Gagal menghapus data!' });
     }
   };
 
@@ -94,10 +109,10 @@ export default function TabPrestasi() {
       if (res.success) {
         setForm({ ...form, image: res.url });
       } else {
-        alert(res.error || "Gagal upload");
+        Swal.fire({ icon: 'error', title: 'Gagal', text: res.error || "Gagal upload" });
       }
     } catch (err) {
-      alert("Error uploading file");
+      Swal.fire({ icon: 'error', title: 'Gagal', text: 'Error uploading file' });
     } finally {
       setUploading(false);
     }

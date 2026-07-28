@@ -33,10 +33,28 @@ export const metadata: Metadata = {
     "Sekolah Dasar Cigalontang", 
     "Sekolah Dasar Tasikmalaya", 
     "Pendidikan Dasar", 
-    "SD Terbaik",
-    "Website Sekolah"
+    "SD Terbaik Cigalontang",
+    "Website Sekolah SDN 1 Cigalontang"
   ],
   authors: [{ name: "SDN 1 Cigalontang" }],
+  creator: "SDN 1 Cigalontang",
+  publisher: "SDN 1 Cigalontang",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   icons: {
     icon: "/logo/logo.png",
     shortcut: "/logo/logo.png",
@@ -69,7 +87,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="id"
       className={`${inter.variable} ${roboto.variable} ${poppins.variable} ${montserrat.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">
