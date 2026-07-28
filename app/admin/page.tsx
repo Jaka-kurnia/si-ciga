@@ -11,7 +11,6 @@ export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [usernameInput, setUsernameInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
-  const [loginError, setLoginError] = useState("");
 
   const [activeTab, setActiveTab] = useState<"berita" | "statistik" | "identitas" | "profil" | "visimisi" | "pengajar" | "prestasi">("berita");
   const [loading, setLoading] = useState(false);
@@ -44,12 +43,17 @@ export default function AdminPage() {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!usernameInput.trim() || !passwordInput.trim()) {
+      Swal.fire({ icon: 'warning', title: 'Perhatian', text: 'Username dan kata sandi tidak boleh kosong!' });
+      return;
+    }
+
     if (usernameInput === "superadmin.siciga" && passwordInput === "password") {
       localStorage.setItem("cms_auth_siciga", "true");
+      Swal.fire({ icon: 'success', title: 'Login Berhasil', text: 'Selamat datang di panel Admin!', timer: 1500, showConfirmButton: false });
       setIsAuthenticated(true);
-      setLoginError("");
     } else {
-      setLoginError("Username atau Kata sandi salah!");
+      Swal.fire({ icon: 'error', title: 'Login Gagal', text: 'Username atau kata sandi salah!' });
     }
   };
 
@@ -252,21 +256,29 @@ export default function AdminPage() {
   // Halaman Login Admin jika belum masuk
   if (!isAuthenticated) {
     return (
-      <div className="min-h-[75vh] flex items-center justify-center p-4">
-        <div className="bg-white rounded-4xl p-8 sm:p-10 max-w-md w-full shadow-[0_20px_60px_rgba(0,0,0,0.08)] border border-gray-100 text-center animate-in fade-in zoom-in-95 duration-500 relative overflow-hidden">
-          {/* Aksen Background */}
-          <div className="absolute top-0 left-0 w-full h-32 bg-navy/5 -z-10"></div>
-          <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-md border-4 border-white p-2 relative z-10">
+      <div 
+        className="fixed inset-0 w-full h-full flex items-center justify-center p-4 z-50 overflow-hidden"
+        style={{
+          backgroundImage: "url('/img/hero3.jpeg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        {/* Overlay Gelap */}
+        <div className="absolute inset-0 bg-navy/60 backdrop-blur-[2px]"></div>
+
+        <div className="bg-white/20 backdrop-blur-xl rounded-4xl p-8 sm:p-10 max-w-md w-full shadow-[0_20px_60px_rgba(0,0,0,0.3)] border border-white/30 text-center animate-in fade-in zoom-in-95 duration-500 relative z-10 overflow-hidden">
+          <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-md border-4 border-white/30 p-2 relative z-10">
             <img src="/logo/logo.png" alt="Logo SD" className="w-full h-full object-contain" />
           </div>
-          <h2 className="text-2xl font-poppins font-bold text-navy mb-2">Login Administrator</h2>
-          <p className="text-sm font-roboto text-gray-500 mb-8 px-2">
+          <h2 className="text-2xl font-poppins font-bold text-white mb-2 shadow-sm drop-shadow-md">Login Administrator</h2>
+          <p className="text-sm font-roboto text-gray-100 mb-8 px-2 drop-shadow-sm">
             Masuk menggunakan kredensial superadmin untuk mengelola konten website SDN 1 Cigalontang.
           </p>
           
           <form onSubmit={handleLogin} className="space-y-5 text-left relative z-10">
             <div>
-              <label className="block text-xs font-poppins font-semibold text-gray-700 uppercase tracking-wider mb-2 ml-1">
+              <label className="block text-xs font-poppins font-semibold text-white uppercase tracking-wider mb-2 ml-1 drop-shadow-md">
                 Username
               </label>
               <input
@@ -274,12 +286,11 @@ export default function AdminPage() {
                 value={usernameInput}
                 onChange={(e) => setUsernameInput(e.target.value)}
                 placeholder="Masukkan username..."
-                required
-                className="w-full px-5 py-3.5 rounded-2xl border-2 border-gray-100 bg-gray-50/50 focus:bg-white focus:border-navy focus:ring-4 focus:ring-navy/10 outline-none transition-all text-base font-roboto"
+                className="w-full px-5 py-3.5 rounded-2xl border border-white/30 bg-white/10 focus:bg-white/20 focus:border-white focus:ring-4 focus:ring-white/20 outline-none transition-all text-base font-roboto text-white placeholder-gray-300 shadow-inner"
               />
             </div>
             <div>
-              <label className="block text-xs font-poppins font-semibold text-gray-700 uppercase tracking-wider mb-2 ml-1">
+              <label className="block text-xs font-poppins font-semibold text-white uppercase tracking-wider mb-2 ml-1 drop-shadow-md">
                 Kata Sandi
               </label>
               <input
@@ -287,16 +298,9 @@ export default function AdminPage() {
                 value={passwordInput}
                 onChange={(e) => setPasswordInput(e.target.value)}
                 placeholder="Masukkan kata sandi..."
-                required
-                className="w-full px-5 py-3.5 rounded-2xl border-2 border-gray-100 bg-gray-50/50 focus:bg-white focus:border-navy focus:ring-4 focus:ring-navy/10 outline-none transition-all text-base font-roboto"
+                className="w-full px-5 py-3.5 rounded-2xl border border-white/30 bg-white/10 focus:bg-white/20 focus:border-white focus:ring-4 focus:ring-white/20 outline-none transition-all text-base font-roboto text-white placeholder-gray-300 shadow-inner"
               />
             </div>
-            
-            {loginError && (
-              <div className="bg-red-50 text-red-500 text-sm font-medium py-3 px-4 rounded-xl text-center border border-red-100">
-                {loginError}
-              </div>
-            )}
             
             <button
               type="submit"
@@ -312,7 +316,7 @@ export default function AdminPage() {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="min-h-screen bg-gray-50 flex flex-col md:flex-row">
       {/* Toast Notification */}
       {statusMessage.text && (
         <div className={`fixed bottom-6 right-6 z-50 px-6 py-4 rounded-2xl shadow-2xl text-white font-poppins font-medium flex items-center gap-3 animate-in slide-in-from-bottom duration-300 ${statusMessage.type === "success" ? "bg-emerald-600" : "bg-rose-600"}`}>
@@ -321,118 +325,139 @@ export default function AdminPage() {
         </div>
       )}
 
-      <div className="flex flex-col md:flex-row gap-6 items-start">
-        {/* Sidebar Navigation */}
-        <aside className="w-full md:w-72 bg-white rounded-3xl p-5 sm:p-6 shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-gray-100 shrink-0 flex flex-col md:sticky md:top-24">
-          <div className="pb-5 border-b border-gray-100 mb-5">
-            <h2 className="text-xl font-poppins font-bold text-navy">Modul CMS</h2>
-           
+      {/* Sidebar Navigation */}
+      <aside className="w-full md:w-72 bg-navy p-5 sm:p-6 shadow-xl shrink-0 flex flex-col md:sticky md:top-0 md:h-screen overflow-y-auto">
+        <div className="pb-5 border-b border-white/10 mb-5 text-center md:text-left flex items-center justify-center md:justify-start gap-3">
+          <div className="w-10 h-10 bg-white rounded-full p-1 flex items-center justify-center shadow-md overflow-hidden shrink-0">
+             <img src="/logo/logo.png" alt="Logo" className="w-full h-full object-contain" />
           </div>
+          <div className="hidden md:block">
+            <h2 className="text-xl font-poppins font-bold text-white tracking-wide leading-tight">CMS</h2>
+            <p className="text-gold text-[10px] font-roboto">SDN 1 Cigalontang</p>
+          </div>
+        </div>
+        
+        <nav className="flex flex-col space-y-3">
+          <button
+            onClick={() => setActiveTab("berita")}
+            className={`flex items-center gap-3 px-4 py-3.5 rounded-2xl font-poppins font-semibold text-sm transition-all duration-300 ${
+              activeTab === "berita"
+                ? "bg-gold text-navy shadow-md transform scale-[1.02]"
+                : "bg-transparent hover:bg-white/10 text-gray-300 border border-transparent hover:border-white/20"
+            }`}
+          >
+            <Newspaper size={18} className={activeTab === "berita" ? "text-navy" : "text-gray-400"} />
+            <span>Berita & Kegiatan</span>
+          </button>
           
-          <nav className="flex flex-col space-y-3">
-            <button
-              onClick={() => setActiveTab("berita")}
-              className={`flex items-center gap-3 px-4 py-3.5 rounded-2xl font-poppins font-semibold text-sm transition-all duration-300 ${
-                activeTab === "berita"
-                  ? "bg-navy text-white shadow-md transform scale-[1.02]"
-                  : "bg-transparent hover:bg-gray-50 text-gray-600 border border-transparent hover:border-gray-200"
-              }`}
-            >
-              <Newspaper size={18} className={activeTab === "berita" ? "text-gold" : "text-gray-400"} />
-              <span>Berita & Kegiatan</span>
-            </button>
-            <button
-              onClick={() => setActiveTab("statistik")}
-              className={`flex items-center gap-3 px-4 py-3.5 rounded-2xl font-poppins font-semibold text-sm transition-all duration-300 ${
-                activeTab === "statistik"
-                  ? "bg-navy text-white shadow-md transform scale-[1.02]"
-                  : "bg-transparent hover:bg-gray-50 text-gray-600 border border-transparent hover:border-gray-200"
-              }`}
-            >
-              <BarChart2 size={18} className={activeTab === "statistik" ? "text-gold" : "text-gray-400"} />
-              <span>Statistik Sekolah</span>
-            </button>
-            <button
-              onClick={() => setActiveTab("identitas")}
-              className={`flex items-center gap-3 px-4 py-3.5 rounded-2xl font-poppins font-semibold text-sm transition-all duration-300 ${
-                activeTab === "identitas"
-                  ? "bg-navy text-white shadow-md transform scale-[1.02]"
-                  : "bg-transparent hover:bg-gray-50 text-gray-600 border border-transparent hover:border-gray-200"
-              }`}
-            >
-              <Building2 size={18} className={activeTab === "identitas" ? "text-gold" : "text-gray-400"} />
-              <span>Identitas & Kontak</span>
-            </button>
+          <button
+            onClick={() => setActiveTab("statistik")}
+            className={`flex items-center gap-3 px-4 py-3.5 rounded-2xl font-poppins font-semibold text-sm transition-all duration-300 ${
+              activeTab === "statistik"
+                ? "bg-gold text-navy shadow-md transform scale-[1.02]"
+                : "bg-transparent hover:bg-white/10 text-gray-300 border border-transparent hover:border-white/20"
+            }`}
+          >
+            <BarChart2 size={18} className={activeTab === "statistik" ? "text-navy" : "text-gray-400"} />
+            <span>Statistik Sekolah</span>
+          </button>
+          
+          <button
+            onClick={() => setActiveTab("identitas")}
+            className={`flex items-center gap-3 px-4 py-3.5 rounded-2xl font-poppins font-semibold text-sm transition-all duration-300 ${
+              activeTab === "identitas"
+                ? "bg-gold text-navy shadow-md transform scale-[1.02]"
+                : "bg-transparent hover:bg-white/10 text-gray-300 border border-transparent hover:border-white/20"
+            }`}
+          >
+            <Building2 size={18} className={activeTab === "identitas" ? "text-navy" : "text-gray-400"} />
+            <span>Identitas & Kontak</span>
+          </button>
 
-            <button
-              onClick={() => setActiveTab("profil")}
-              className={`flex items-center gap-3 px-4 py-3.5 rounded-2xl font-poppins font-semibold text-sm transition-all duration-300 ${
-                activeTab === "profil"
-                  ? "bg-navy text-white shadow-md transform scale-[1.02]"
-                  : "bg-transparent hover:bg-gray-50 text-gray-600 border border-transparent hover:border-gray-200"
-              }`}
-            >
-              <FileText size={18} className={activeTab === "profil" ? "text-gold" : "text-gray-400"} />
-              <span>Profil (Tentang Kami)</span>
-            </button>
+          <button
+            onClick={() => setActiveTab("profil")}
+            className={`flex items-center gap-3 px-4 py-3.5 rounded-2xl font-poppins font-semibold text-sm transition-all duration-300 ${
+              activeTab === "profil"
+                ? "bg-gold text-navy shadow-md transform scale-[1.02]"
+                : "bg-transparent hover:bg-white/10 text-gray-300 border border-transparent hover:border-white/20"
+            }`}
+          >
+            <FileText size={18} className={activeTab === "profil" ? "text-navy" : "text-gray-400"} />
+            <span>Profil (Tentang Kami)</span>
+          </button>
 
-            <button
-              onClick={() => setActiveTab("visimisi")}
-              className={`flex items-center gap-3 px-4 py-3.5 rounded-2xl font-poppins font-semibold text-sm transition-all duration-300 ${
-                activeTab === "visimisi"
-                  ? "bg-navy text-white shadow-md transform scale-[1.02]"
-                  : "bg-transparent hover:bg-gray-50 text-gray-600 border border-transparent hover:border-gray-200"
-              }`}
-            >
-              <Target size={18} className={activeTab === "visimisi" ? "text-gold" : "text-gray-400"} />
-              <span>Visi & Misi</span>
-            </button>
+          <button
+            onClick={() => setActiveTab("visimisi")}
+            className={`flex items-center gap-3 px-4 py-3.5 rounded-2xl font-poppins font-semibold text-sm transition-all duration-300 ${
+              activeTab === "visimisi"
+                ? "bg-gold text-navy shadow-md transform scale-[1.02]"
+                : "bg-transparent hover:bg-white/10 text-gray-300 border border-transparent hover:border-white/20"
+            }`}
+          >
+            <Target size={18} className={activeTab === "visimisi" ? "text-navy" : "text-gray-400"} />
+            <span>Visi & Misi</span>
+          </button>
 
-            <button
-              onClick={() => setActiveTab("pengajar")}
-              className={`flex items-center gap-3 px-4 py-3.5 rounded-2xl font-poppins font-semibold text-sm transition-all duration-300 ${
-                activeTab === "pengajar"
-                  ? "bg-navy text-white shadow-md transform scale-[1.02]"
-                  : "bg-transparent hover:bg-gray-50 text-gray-600 border border-transparent hover:border-gray-200"
-              }`}
-            >
-              <Users size={18} className={activeTab === "pengajar" ? "text-gold" : "text-gray-400"} />
-              <span>Struktur Tim Pengajar</span>
-            </button>
+          <button
+            onClick={() => setActiveTab("pengajar")}
+            className={`flex items-center gap-3 px-4 py-3.5 rounded-2xl font-poppins font-semibold text-sm transition-all duration-300 ${
+              activeTab === "pengajar"
+                ? "bg-gold text-navy shadow-md transform scale-[1.02]"
+                : "bg-transparent hover:bg-white/10 text-gray-300 border border-transparent hover:border-white/20"
+            }`}
+          >
+            <Users size={18} className={activeTab === "pengajar" ? "text-navy" : "text-gray-400"} />
+            <span>Struktur Tim Pengajar</span>
+          </button>
 
-            <button
-              onClick={() => setActiveTab("prestasi")}
-              className={`flex items-center gap-3 px-4 py-3.5 rounded-2xl font-poppins font-semibold text-sm transition-all duration-300 ${
-                activeTab === "prestasi"
-                  ? "bg-navy text-white shadow-md transform scale-[1.02]"
-                  : "bg-transparent hover:bg-gray-50 text-gray-600 border border-transparent hover:border-gray-200"
-              }`}
-            >
-              <Trophy size={18} className={activeTab === "prestasi" ? "text-gold" : "text-gray-400"} />
-              <span>Prestasi Unggulan</span>
-            </button>
-          </nav>
+          <button
+            onClick={() => setActiveTab("prestasi")}
+            className={`flex items-center gap-3 px-4 py-3.5 rounded-2xl font-poppins font-semibold text-sm transition-all duration-300 ${
+              activeTab === "prestasi"
+                ? "bg-gold text-navy shadow-md transform scale-[1.02]"
+                : "bg-transparent hover:bg-white/10 text-gray-300 border border-transparent hover:border-white/20"
+            }`}
+          >
+            <Trophy size={18} className={activeTab === "prestasi" ? "text-navy" : "text-gray-400"} />
+            <span>Prestasi Unggulan</span>
+          </button>
+        </nav>
 
-          <div className="mt-8 pt-6 border-t border-gray-100 flex flex-col gap-3">
-            <button
-              onClick={fetchAllData}
-              disabled={loading}
-              className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-gray-50 hover:bg-gray-100 text-navy font-poppins font-semibold text-sm transition-colors border border-gray-200 disabled:opacity-50"
-            >
-              <RefreshCw size={16} className={loading ? "animate-spin" : ""} />
-              <span>Refresh Data</span>
-            </button>
-            <button
-              onClick={handleLogout}
-              className="w-full flex items-center justify-center gap-2 py-3 bg-rose-50 hover:bg-rose-100 text-rose-600 font-poppins font-bold text-sm rounded-xl transition-colors"
-            >
-              Keluar Admin
-            </button>
-          </div>
-        </aside>
+        <div className="mt-auto pt-6 border-t border-white/10 flex flex-col gap-3">
+          <button
+            onClick={fetchAllData}
+            disabled={loading}
+            className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-poppins font-semibold text-sm transition-colors border border-white/10 disabled:opacity-50"
+          >
+            <RefreshCw size={16} className={loading ? "animate-spin" : ""} />
+            <span>Refresh Data</span>
+          </button>
+          <button
+            onClick={handleLogout}
+            className="w-full flex items-center justify-center gap-2 py-3 bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 font-poppins font-bold text-sm rounded-xl transition-colors border border-rose-500/20"
+          >
+            Keluar Admin
+          </button>
+        </div>
+      </aside>
 
-        {/* Main Content Area */}
-        <div className="flex-1 w-full bg-white rounded-3xl p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-gray-100 min-h-150">
+      {/* Main Content Area */}
+      <div className="flex-1 w-full flex flex-col min-h-screen">
+        {/* Topbar Main Content */}
+        <div className="bg-white px-4 md:px-8 h-16 flex items-center justify-between border-b border-gray-100 shadow-sm sticky top-0 z-40 shrink-0">
+           <h2 className="text-lg font-poppins font-bold text-navy hidden sm:block">Dashboard Administrator</h2>
+           <div className="flex-1 sm:hidden"></div>
+           <a 
+              href="/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="bg-navy hover:bg-gold hover:text-navy text-white text-xs sm:text-sm font-poppins font-medium px-4 py-2 rounded-full transition-colors shadow-sm flex items-center gap-2"
+            >
+              🚀 <span className="hidden sm:inline">Lihat Website</span>
+            </a>
+        </div>
+        
+        <div className="p-4 md:p-8 lg:p-10 flex-1">
           {/* CONTENT: TAB BERITA */}
           {activeTab === "berita" && (
         <div className="space-y-6">
@@ -704,12 +729,11 @@ export default function AdminPage() {
       {activeTab === "pengajar" && <TabPengajar />}
       {activeTab === "prestasi" && <TabPrestasi />}
       
-      {/* Penutup Main Content Wrapper */}
-      </div>
-      
-      {/* Penutup Flex Sidebar Container */}
+      {/* Penutup Inner Content Wrapper */}
       </div>
 
+      {/* Penutup Main Content Wrapper */}
+      </div>
     </div>
   );
 }
