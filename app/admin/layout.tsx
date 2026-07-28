@@ -17,9 +17,9 @@ export default function AdminLayout({
       <header className="bg-navy text-white shadow-md sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <span className="w-9 h-9 bg-gold text-navy font-poppins font-bold rounded-xl flex items-center justify-center text-lg shadow-sm">
-              ⚡
-            </span>
+            <div className="w-10 h-10 bg-white rounded-full p-1 flex items-center justify-center shadow-md overflow-hidden">
+              <img src="/logo/logo.png" alt="Logo SDN 1 Cigalontang" className="w-full h-full object-contain" />
+            </div>
             <div>
               <h1 className="font-poppins font-bold text-base sm:text-lg leading-tight text-white">
                 CMS Dashboard

@@ -48,7 +48,7 @@ export default function Prestasi() {
                 onClick={() => setSelectedPrestasi(index)}
               >
                 {/* Bagian Foto Kiri */}
-                <div className="md:w-5/12 h-64 md:h-auto min-h-[300px] relative overflow-hidden bg-gray-100 shrink-0">
+                <div className="md:w-5/12 h-64 md:h-auto min-h-75 relative overflow-hidden bg-gray-100 shrink-0">
                   <img 
                     src="/fotoPrestasi/juara.jpeg" 
                     alt={item.title}

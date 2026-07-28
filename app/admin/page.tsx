@@ -286,73 +286,74 @@ export default function AdminPage() {
         </div>
       )}
 
-      {/* Header Admin Bar */}
-      <div className="bg-white rounded-3xl p-6 shadow-md border border-gray-100 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-        <div>
-          <h2 className="text-2xl font-poppins font-bold text-navy">Pusat Pengelolaan Konten (CMS)</h2>
-          <p className="text-sm text-gray-500 font-roboto mt-1">
-            Terhubung langsung ke database <strong className="text-navy">MySQL (db_siciga)</strong> secara real-time
-          </p>
-        </div>
-        <div className="flex items-center gap-3">
-          <button
-            onClick={fetchAllData}
-            disabled={loading}
-            className="p-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 text-navy transition-colors disabled:opacity-50"
-            title="Refresh Data"
-          >
-            <RefreshCw size={18} className={loading ? "animate-spin" : ""} />
-          </button>
-          <button
-            onClick={handleLogout}
-            className="px-5 py-2.5 bg-rose-50 hover:bg-rose-100 text-rose-600 font-poppins font-semibold text-xs sm:text-sm rounded-xl transition-colors"
-          >
-            Keluar Admin
-          </button>
-        </div>
-      </div>
+      <div className="flex flex-col md:flex-row gap-6 items-start">
+        {/* Sidebar Navigation */}
+        <aside className="w-full md:w-72 bg-white rounded-3xl p-5 sm:p-6 shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-gray-100 shrink-0 flex flex-col md:sticky md:top-24">
+          <div className="pb-5 border-b border-gray-100 mb-5">
+            <h2 className="text-xl font-poppins font-bold text-navy">Menu CMS</h2>
+            <p className="text-xs text-gray-500 font-roboto mt-1">
+              Terhubung ke <strong className="text-navy">MySQL</strong>
+            </p>
+          </div>
+          
+          <nav className="flex flex-col space-y-3">
+            <button
+              onClick={() => setActiveTab("berita")}
+              className={`flex items-center gap-3 px-4 py-3.5 rounded-2xl font-poppins font-semibold text-sm transition-all duration-300 ${
+                activeTab === "berita"
+                  ? "bg-navy text-white shadow-md transform scale-[1.02]"
+                  : "bg-transparent hover:bg-gray-50 text-gray-600 border border-transparent hover:border-gray-200"
+              }`}
+            >
+              <Newspaper size={18} className={activeTab === "berita" ? "text-gold" : "text-gray-400"} />
+              <span>Berita & Kegiatan</span>
+            </button>
+            <button
+              onClick={() => setActiveTab("statistik")}
+              className={`flex items-center gap-3 px-4 py-3.5 rounded-2xl font-poppins font-semibold text-sm transition-all duration-300 ${
+                activeTab === "statistik"
+                  ? "bg-navy text-white shadow-md transform scale-[1.02]"
+                  : "bg-transparent hover:bg-gray-50 text-gray-600 border border-transparent hover:border-gray-200"
+              }`}
+            >
+              <BarChart2 size={18} className={activeTab === "statistik" ? "text-gold" : "text-gray-400"} />
+              <span>Statistik Sekolah</span>
+            </button>
+            <button
+              onClick={() => setActiveTab("identitas")}
+              className={`flex items-center gap-3 px-4 py-3.5 rounded-2xl font-poppins font-semibold text-sm transition-all duration-300 ${
+                activeTab === "identitas"
+                  ? "bg-navy text-white shadow-md transform scale-[1.02]"
+                  : "bg-transparent hover:bg-gray-50 text-gray-600 border border-transparent hover:border-gray-200"
+              }`}
+            >
+              <Building2 size={18} className={activeTab === "identitas" ? "text-gold" : "text-gray-400"} />
+              <span>Identitas & Kontak</span>
+            </button>
+          </nav>
 
-      {/* Tabs Navigation */}
-      <div className="flex space-x-2 overflow-x-auto pb-2 border-b border-gray-200">
-        <button
-          onClick={() => setActiveTab("berita")}
-          className={`flex items-center gap-2 px-6 py-3 rounded-2xl font-poppins font-semibold text-sm sm:text-base transition-all ${
-            activeTab === "berita"
-              ? "bg-navy text-white shadow-lg"
-              : "bg-white hover:bg-gray-50 text-gray-600 border border-gray-200"
-          }`}
-        >
-          <Newspaper size={18} className={activeTab === "berita" ? "text-gold" : ""} />
-          <span>Berita & Kegiatan</span>
-        </button>
+          <div className="mt-8 pt-6 border-t border-gray-100 flex flex-col gap-3">
+            <button
+              onClick={fetchAllData}
+              disabled={loading}
+              className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-gray-50 hover:bg-gray-100 text-navy font-poppins font-semibold text-sm transition-colors border border-gray-200 disabled:opacity-50"
+            >
+              <RefreshCw size={16} className={loading ? "animate-spin" : ""} />
+              <span>Refresh Data</span>
+            </button>
+            <button
+              onClick={handleLogout}
+              className="w-full flex items-center justify-center gap-2 py-3 bg-rose-50 hover:bg-rose-100 text-rose-600 font-poppins font-bold text-sm rounded-xl transition-colors"
+            >
+              Keluar Admin
+            </button>
+          </div>
+        </aside>
 
-        <button
-          onClick={() => setActiveTab("statistik")}
-          className={`flex items-center gap-2 px-6 py-3 rounded-2xl font-poppins font-semibold text-sm sm:text-base transition-all ${
-            activeTab === "statistik"
-              ? "bg-navy text-white shadow-lg"
-              : "bg-white hover:bg-gray-50 text-gray-600 border border-gray-200"
-          }`}
-        >
-          <BarChart2 size={18} className={activeTab === "statistik" ? "text-gold" : ""} />
-          <span>Statistik Sekolah</span>
-        </button>
-
-        <button
-          onClick={() => setActiveTab("identitas")}
-          className={`flex items-center gap-2 px-6 py-3 rounded-2xl font-poppins font-semibold text-sm sm:text-base transition-all ${
-            activeTab === "identitas"
-              ? "bg-navy text-white shadow-lg"
-              : "bg-white hover:bg-gray-50 text-gray-600 border border-gray-200"
-          }`}
-        >
-          <Building2 size={18} className={activeTab === "identitas" ? "text-gold" : ""} />
-          <span>Identitas & Kontak</span>
-        </button>
-      </div>
-
-      {/* CONTENT: TAB BERITA */}
-      {activeTab === "berita" && (
+        {/* Main Content Area */}
+        <div className="flex-1 w-full bg-white rounded-3xl p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-gray-100 min-h-[600px]">
+          {/* CONTENT: TAB BERITA */}
+          {activeTab === "berita" && (
         <div className="space-y-6">
           <div className="flex items-center justify-between">
             <h3 className="text-xl font-poppins font-bold text-navy">Daftar Berita & Dokumentasi</h3>
@@ -616,6 +617,13 @@ export default function AdminPage() {
           </div>
         </div>
       )}
+      
+      {/* Penutup Main Content Wrapper */}
+      </div>
+      
+      {/* Penutup Flex Sidebar Container */}
+      </div>
+
     </div>
   );
 }
