@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { Newspaper, BarChart2, Building2, Check, X, ArrowRight, Users, FileText, Target, Trophy } from "lucide-react";
+import { Newspaper, BarChart2, Building2, Check, X, ArrowRight, Users, FileText, Target, Trophy, Image as ImageIcon } from "lucide-react";
 import Swal from "sweetalert2";
 import TabProfil from "@/components/admin/TabProfil";
 import TabVisiMisi from "@/components/admin/TabVisiMisi";
@@ -10,16 +10,36 @@ import TabPrestasi from "@/components/admin/TabPrestasi";
 import TabBerita from "@/components/admin/TabBerita";
 import TabStatistik from "@/components/admin/TabStatistik";
 import TabIdentitas from "@/components/admin/TabIdentitas";
+import TabGaleri from "@/components/admin/TabGaleri";
 
 export default function AdminPage() {
+  const getTabTitle = (tab: string) => {
+    switch (tab) {
+      case "berita": return "Manajemen Berita & Kegiatan";
+      case "statistik": return "Manajemen Statistik Sekolah";
+      case "identitas": return "Manajemen Identitas & Kontak";
+      case "profil": return "Manajemen Profil (Tentang Kami)";
+      case "visimisi": return "Manajemen Visi & Misi";
+      case "pengajar": return "Manajemen Struktur Tim Pengajar";
+      case "prestasi": return "Manajemen Prestasi Unggulan";
+      case "galeri": return "Manajemen Galeri Kegiatan";
+      default: return "Dashboard Administrator";
+    }
+  };
+
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [usernameInput, setUsernameInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
 
-  const [activeTab, setActiveTab] = useState<"berita" | "statistik" | "identitas" | "profil" | "visimisi" | "pengajar" | "prestasi">("berita");
+  const [activeTab, setActiveTab] = useState<"berita" | "statistik" | "identitas" | "profil" | "visimisi" | "pengajar" | "prestasi" | "galeri">("berita");
 
   // Durasi sesi login: 12 jam (dalam milidetik)
   const SESSION_DURATION = 12 * 60 * 60 * 1000;
+
+  // Update document title dynamically
+  useEffect(() => {
+    document.title = `${getTabTitle(activeTab)} | Admin CMS SDN 1 Cigalontang`;
+  }, [activeTab]);
 
   // Cek otorisasi dengan validasi waktu kedaluwarsa sesi (Session Expiry)
   useEffect(() => {
@@ -98,7 +118,7 @@ export default function AdminPage() {
             </div>
             <div>
               <label className="block text-xs font-poppins font-semibold text-white uppercase tracking-wider mb-2 ml-1 drop-shadow-md">
-                Kata Sandi
+                Password
               </label>
               <input
                 type="password"
@@ -220,6 +240,18 @@ export default function AdminPage() {
             <Trophy size={18} className={activeTab === "prestasi" ? "text-navy" : "text-gray-400"} />
             <span>Prestasi Unggulan</span>
           </button>
+
+          <button
+            onClick={() => setActiveTab("galeri")}
+            className={`flex items-center gap-3 px-4 py-3.5 rounded-2xl font-poppins font-semibold text-sm transition-all duration-300 ${
+              activeTab === "galeri"
+                ? "bg-gold text-navy shadow-md transform scale-[1.02]"
+                : "bg-transparent hover:bg-white/10 text-gray-300 border border-transparent hover:border-white/20"
+            }`}
+          >
+            <ImageIcon size={18} className={activeTab === "galeri" ? "text-navy" : "text-gray-400"} />
+            <span>Galeri Kegiatan</span>
+          </button>
         </nav>
 
         <div className="mt-auto pt-6 border-t border-white/10 flex flex-col gap-3">
@@ -256,6 +288,7 @@ export default function AdminPage() {
           {activeTab === "visimisi" && <TabVisiMisi />}
           {activeTab === "pengajar" && <TabPengajar />}
           {activeTab === "prestasi" && <TabPrestasi />}
+          {activeTab === "galeri" && <TabGaleri />}
         </div>
       </div>
     </div>

@@ -4,6 +4,11 @@ import Link from "lucide-react";
 export const metadata: Metadata = {
   title: "Admin CMS Dashboard | SDN 1 Cigalontang",
   description: "Panel pengelola konten website SDN 1 Cigalontang (Berita, Statistik, Identitas)",
+  icons: {
+    icon: "/logo/logo.png",
+    shortcut: "/logo/logo.png",
+    apple: "/logo/logo.png",
+  },
 };
 
 export default function AdminLayout({

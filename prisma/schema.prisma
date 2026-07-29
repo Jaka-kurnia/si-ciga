@@ -68,3 +68,10 @@ model Pengajar {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }
+
+model Galeri {
+  id        Int      @id @default(autoincrement())
+  image     String
+  createdAt DateTime @default(now())
+}
+
