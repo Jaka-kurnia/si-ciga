@@ -5,12 +5,12 @@ import { Award, Building2, Hash, BookOpen, Phone, Mail } from "lucide-react";
 
 export default function TentangKami() {
   const defaultIdentity = [
-    { label: "Akreditasi", value: "B", icon: <Award size={24} className="text-gold" /> },
-    { label: "Status Sekolah", value: "Negeri", icon: <Building2 size={24} className="text-gold" /> },
-    { label: "NPSN", value: "20262428", icon: <Hash size={24} className="text-gold" /> },
-    { label: "Bentuk Pendidikan", value: "SD", icon: <BookOpen size={24} className="text-gold" /> },
-    { label: "Telepon", value: "085322363039", icon: <Phone size={24} className="text-gold" /> },
-    { label: "Email", value: "iwakartiwa52@gmail.com", icon: <Mail size={24} className="text-gold" /> },
+    { label: "Akreditasi", value: "B", icon: <Award size={18} /> },
+    { label: "Status Sekolah", value: "Negeri", icon: <Building2 size={18} /> },
+    { label: "NPSN", value: "20262428", icon: <Hash size={18} /> },
+    { label: "Bentuk Pendidikan", value: "SD", icon: <BookOpen size={18} /> },
+    { label: "Telepon", value: "085322363039", icon: <Phone size={18} /> },
+    { label: "Email", value: "iwakartiwa52@gmail.com", icon: <Mail size={18} /> },
   ];
 
   const [identityData, setIdentityData] = useState(defaultIdentity);
@@ -26,17 +26,17 @@ export default function TentangKami() {
       .then((result) => {
         if (result.success && result.data && result.data.length > 0) {
           const iconMap: Record<string, ReactNode> = {
-            "Akreditasi": <Award size={24} className="text-gold" />,
-            "Status Sekolah": <Building2 size={24} className="text-gold" />,
-            "NPSN": <Hash size={24} className="text-gold" />,
-            "Bentuk Pendidikan": <BookOpen size={24} className="text-gold" />,
-            "Telepon": <Phone size={24} className="text-gold" />,
-            "Email": <Mail size={24} className="text-gold" />,
+            "Akreditasi": <Award size={18} />,
+            "Status Sekolah": <Building2 size={18} />,
+            "NPSN": <Hash size={18} />,
+            "Bentuk Pendidikan": <BookOpen size={18} />,
+            "Telepon": <Phone size={18} />,
+            "Email": <Mail size={18} />,
           };
           const dynamicData = result.data.map((item: any, index: number) => ({
             label: item.label,
             value: item.value,
-            icon: iconMap[item.label] || defaultIdentity[index]?.icon || <Award size={24} className="text-gold" />,
+            icon: iconMap[item.label] || defaultIdentity[index]?.icon || <Award size={18} />,
           }));
           setIdentityData(dynamicData);
         }
@@ -90,28 +90,30 @@ export default function TentangKami() {
         </div>
 
         {/* Card Identitas Sekolah */}
-        <div className="bg-white rounded-3xl p-5 sm:p-8 md:p-10 shadow-[0_10px_30px_rgba(0,0,0,0.05)] border border-gray-100" data-aos="fade-up">
-          <div className="text-center mb-8">
-            <h3 className="text-2xl font-poppins font-bold text-navy">Identitas Sekolah</h3>
-            <div className="w-16 h-1 bg-gold mx-auto mt-2 rounded-full"></div>
+        <div className="mt-10" data-aos="fade-up">
+          <div className="text-center mb-12">
+            <h3 className="text-sm font-poppins font-bold text-gold uppercase tracking-[0.2em] mb-2">Informasi Resmi</h3>
+            <h2 className="text-3xl md:text-4xl font-poppins font-bold text-navy">Identitas Sekolah</h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
             {identityData.map((item, index) => (
               <div 
                 key={index} 
                 data-aos="fade-up" 
                 data-aos-delay={index * 100}
-                className="flex items-start sm:items-center p-4 sm:p-5 bg-gray-50 rounded-2xl border border-gray-100 hover:border-gold/50 hover:shadow-md transition-all duration-300 group"
+                className="bg-[#F8FAFC] rounded-3xl p-4 sm:p-5 flex flex-col items-center text-center transition-transform hover:-translate-y-1 duration-300"
               >
-                <div className="w-12 h-12 rounded-xl bg-navy/10 flex items-center justify-center mr-3 sm:mr-4 shrink-0 group-hover:scale-110 transition-transform">
+                <div className="w-10 h-10 rounded-xl bg-[#E0F2FE] flex items-center justify-center mb-3 text-[#0284C7]">
                   {item.icon}
                 </div>
-                <div className="flex-1 min-w-0">
-                  <span className="block text-xs sm:text-sm text-gray-400 font-roboto font-medium mb-0.5">{item.label}</span>
-                  <span className="block text-sm sm:text-base md:text-lg font-poppins font-bold text-navy break-all sm:break-normal" title={item.value}>
-                    {item.value}
-                  </span>
-                </div>
+                
+                <span className="block text-lg sm:text-xl lg:text-2xl font-poppins font-extrabold text-[#0284C7] mb-1 break-words w-full" title={item.value}>
+                  {item.value}
+                </span>
+                <span className="block text-[11px] sm:text-xs font-roboto font-medium text-slate-500">
+                  {item.label}
+                </span>
               </div>
             ))}
           </div>

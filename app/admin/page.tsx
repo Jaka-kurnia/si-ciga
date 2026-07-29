@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { Newspaper, BarChart2, Building2, Check, X, ArrowRight, Users, FileText, Target, Trophy, Image as ImageIcon } from "lucide-react";
+import { Newspaper, BarChart2, Building2, Check, X, ArrowRight, Users, FileText, Target, Trophy, Image as ImageIcon, Eye, EyeOff } from "lucide-react";
 import Swal from "sweetalert2";
 import TabProfil from "@/components/admin/TabProfil";
 import TabVisiMisi from "@/components/admin/TabVisiMisi";
@@ -30,6 +30,7 @@ export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [usernameInput, setUsernameInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const [activeTab, setActiveTab] = useState<"berita" | "statistik" | "identitas" | "profil" | "visimisi" | "pengajar" | "prestasi" | "galeri">("berita");
 
@@ -120,13 +121,23 @@ export default function AdminPage() {
               <label className="block text-xs font-poppins font-semibold text-white uppercase tracking-wider mb-2 ml-1 drop-shadow-md">
                 Password
               </label>
-              <input
-                type="password"
-                value={passwordInput}
-                onChange={(e) => setPasswordInput(e.target.value)}
-                placeholder="Masukkan kata sandi..."
-                className="w-full px-5 py-3.5 rounded-2xl border border-white/30 bg-white/10 focus:bg-white/20 focus:border-white focus:ring-4 focus:ring-white/20 outline-none transition-all text-base font-roboto text-white placeholder-gray-300 shadow-inner"
-              />
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  value={passwordInput}
+                  onChange={(e) => setPasswordInput(e.target.value)}
+                  placeholder="Masukkan kata sandi..."
+                  className="w-full px-5 py-3.5 rounded-2xl border border-white/30 bg-white/10 focus:bg-white/20 focus:border-white focus:ring-4 focus:ring-white/20 outline-none transition-all text-base font-roboto text-white placeholder-gray-300 shadow-inner pr-12"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors focus:outline-none"
+                  title={showPassword ? "Sembunyikan sandi" : "Tampilkan sandi"}
+                >
+                  {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                </button>
+              </div>
             </div>
             
             <button
