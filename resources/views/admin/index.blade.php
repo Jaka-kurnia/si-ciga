@@ -72,9 +72,12 @@
                 </nav>
 
                 <div class="mt-auto pt-6 border-t border-white/10 flex flex-col gap-3">
-                    <a href="/" class="w-full flex items-center justify-center gap-2 py-3 bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 font-poppins font-bold text-sm rounded-xl transition-colors border border-rose-500/20">
-                        Keluar Admin
-                    </a>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="w-full flex items-center justify-center gap-2 py-3 bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 font-poppins font-bold text-sm rounded-xl transition-colors border border-rose-500/20">
+                            Keluar Admin
+                        </button>
+                    </form>
                 </div>
             </aside>
 
@@ -114,6 +117,23 @@
     </div>
     <script>
         lucide.createIcons();
+        
+        function confirmDelete(formId, message) {
+            Swal.fire({
+                title: 'Apakah Anda Yakin?',
+                text: message || "Data ini akan dihapus secara permanen!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#ef4444',
+                cancelButtonColor: '#0D2B5E',
+                confirmButtonText: 'Ya, Hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById(formId).submit();
+                }
+            });
+        }
     </script>
 </body>
 </html>

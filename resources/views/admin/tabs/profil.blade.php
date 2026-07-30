@@ -39,8 +39,8 @@
             @foreach($profil->where('key', '!=', 'image') as $index => $item)
                 <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200 relative">
                     <input type="hidden" name="profil[{{ $index }}][id]" value="{{ $item->id }}">
-                    
-                    <button type="button" onclick="if(confirm('Hapus paragraf ini?')) { document.getElementById('del-profil-{{ $item->id }}').submit(); }" class="absolute top-2 right-2 p-1.5 bg-red-100 text-red-600 hover:bg-red-200 rounded-lg transition-colors">
+                    <!-- Delete Button Form embedded -->
+                    <button type="button" onclick="confirmDelete('del-profil-{{ $item->id }}', 'Hapus paragraf ini?')" class="absolute top-2 right-2 p-1.5 bg-red-100 text-red-600 hover:bg-red-200 rounded-lg transition-colors">
                         <i data-lucide="trash-2" class="w-4 h-4"></i>
                     </button>
 

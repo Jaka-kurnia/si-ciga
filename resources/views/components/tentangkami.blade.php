@@ -5,8 +5,6 @@
         <div class="aspect-video bg-gray-300 rounded-2xl overflow-hidden shadow-xl relative group">
           @php
               $imgProfil = $profil->where('key', 'image')->first()?->content ?? '/fotoSekolah/foto2.jpg';
-              $p1 = $profil->where('key', 'paragraf1')->first()?->content ?? 'Memuat profil...';
-              $p2 = $profil->where('key', 'paragraf2')->first()?->content ?? '';
           @endphp
           <img 
             src="{{ $imgProfil }}" 
@@ -18,8 +16,16 @@
       <div class="w-full md:w-1/2" data-aos="fade-left">
         <h2 class="text-3xl font-poppins font-bold text-navy mb-4">Tentang Kami</h2>
         <div class="w-20 h-1 bg-gold mb-6 rounded-full"></div>
-        <p class="font-montserrat text-gray-600 mb-4 leading-relaxed whitespace-pre-wrap">{{ $p1 }}</p>
-        <p class="font-montserrat text-gray-600 leading-relaxed whitespace-pre-wrap">{{ $p2 }}</p>
+        
+        @php
+            $paragraphs = $profil->where('key', '!=', 'image');
+        @endphp
+
+        @forelse($paragraphs as $item)
+            <p class="font-montserrat text-gray-600 mb-4 leading-relaxed whitespace-pre-wrap">{{ $item->content }}</p>
+        @empty
+            <p class="font-montserrat text-gray-600 mb-4 leading-relaxed whitespace-pre-wrap">Memuat profil...</p>
+        @endforelse
       </div>
     </div>
 

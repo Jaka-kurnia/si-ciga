@@ -25,7 +25,7 @@
                     <input type="hidden" name="statistik[{{ $index }}][id]" value="{{ $stat->id }}">
                     
                     <!-- Delete Button Form embedded -->
-                    <button type="button" onclick="if(confirm('Hapus statistik ini?')) { document.getElementById('del-stat-{{ $stat->id }}').submit(); }" class="absolute top-2 right-2 p-1.5 bg-red-100 text-red-600 hover:bg-red-200 rounded-lg transition-colors">
+                    <button type="button" onclick="confirmDelete('del-stat-{{ $stat->id }}', 'Hapus statistik ini?')" class="absolute top-2 right-2 p-1.5 bg-red-100 text-red-600 hover:bg-red-200 rounded-lg transition-colors">
                         <i data-lucide="trash-2" class="w-4 h-4"></i>
                     </button>
 

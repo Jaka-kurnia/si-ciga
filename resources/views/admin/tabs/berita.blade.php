@@ -38,16 +38,16 @@
               </span>
             </td>
             <td class="p-4">{{ $item->date }}</td>
-            <td class="p-4 text-right whitespace-nowrap">
-              <button type="button" onclick="editBerita({{ json_encode($item) }})" class="p-2 bg-blue-100 text-blue-600 hover:bg-blue-200 rounded-lg transition-colors mr-1 inline-block">
-                <i data-lucide="edit" class="w-4 h-4"></i>
+            <td class="px-6 py-4 whitespace-nowrap text-right">
+              <button type="button" onclick="editBerita({{ json_encode($item) }})" class="text-blue-600 hover:text-blue-900 bg-blue-50 hover:bg-blue-100 p-2 rounded-lg transition-colors mr-2 inline-block">
+                  <i data-lucide="edit-2" class="w-4 h-4"></i>
               </button>
-              <form action="{{ route('admin.berita.destroy', $item->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Apakah Anda yakin ingin menghapus berita ini?');">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="p-2 bg-red-100 text-red-600 hover:bg-red-200 rounded-lg transition-colors">
-                  <i data-lucide="trash-2" class="w-4 h-4"></i>
-                </button>
+              <form id="del-berita-{{ $item->id }}" action="{{ route('admin.berita.destroy', $item->id) }}" method="POST" class="inline-block">
+                  @csrf
+                  @method('DELETE')
+                  <button type="button" onclick="confirmDelete('del-berita-{{ $item->id }}', 'Apakah Anda yakin ingin menghapus berita ini?')" class="text-red-600 hover:text-red-900 bg-red-50 hover:bg-red-100 p-2 rounded-lg transition-colors">
+                      <i data-lucide="trash-2" class="w-4 h-4"></i>
+                  </button>
               </form>
             </td>
           </tr>
