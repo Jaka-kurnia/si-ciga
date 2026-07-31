@@ -64,7 +64,7 @@
                 <div
                     class="bg-navy border border-white/10 rounded-2xl p-6 flex flex-col items-center justify-center text-center shadow-lg hover:border-gold/30 transition-colors group">
                     <img src="/logo/logokkn.png" alt="KKN LP3I Tasik 01"
-                        class="w-28 h-auto object-contain mb-4 filter drop-shadow-md group-hover:scale-105 transition-transform duration-300">
+                        class="w-48 h-auto object-contain mb-4 filter drop-shadow-md group-hover:scale-105 transition-transform duration-300 ">
                     <span class="text-gold font-poppins font-bold text-[10px] tracking-widest uppercase mb-1">LP3I
                         Tasikmalaya</span>
                     <span class="text-white font-poppins font-bold text-sm leading-snug">KKN LP3I Tasik 01 <br><span
