@@ -3,7 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SDN 1 Cigalontang</title>
+    <!-- Primary Meta Tags -->
+    <title>SDN 1 Cigalontang | Cerdas, Terampil, Beriman</title>
+    <meta name="title" content="SDN 1 Cigalontang | Cerdas, Terampil, Beriman">
+    <meta name="description" content="Website resmi SD Negeri 1 Cigalontang. Menampilkan profil, visi misi, data statistik, prestasi unggulan, serta berita terbaru seputar pendidikan dan kegiatan sekolah.">
+    <meta name="keywords" content="SDN 1 Cigalontang, Sekolah Dasar Cigalontang, SD Tasikmalaya, Pendidikan, Sekolah Dasar, KKN LP3I Tasik 01">
+    <meta name="author" content="Tim KKN LP3I Tasik 01">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Indonesian">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url('/') }}">
+    <meta property="og:title" content="SDN 1 Cigalontang | Cerdas, Terampil, Beriman">
+    <meta property="og:description" content="Website resmi SD Negeri 1 Cigalontang. Menampilkan profil, visi misi, data statistik, prestasi unggulan, serta berita terbaru.">
+    <meta property="og:image" content="{{ asset('logo/logo.png') }}">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ url('/') }}">
+    <meta property="twitter:title" content="SDN 1 Cigalontang | Cerdas, Terampil, Beriman">
+    <meta property="twitter:description" content="Website resmi SD Negeri 1 Cigalontang. Menampilkan profil, visi misi, data statistik, prestasi unggulan, serta berita terbaru.">
+    <meta property="twitter:image" content="{{ asset('logo/logo.png') }}">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ asset('logo/logo.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('logo/logo.png') }}">
+
+    <!-- Structured Data / JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalOrganization",
+      "name": "SDN 1 Cigalontang",
+      "description": "Sekolah Dasar Negeri 1 Cigalontang, Tasikmalaya",
+      "image": "{{ asset('logo/logo.png') }}",
+      "url": "{{ url('/') }}",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Cigalontang",
+        "addressRegion": "Jawa Barat",
+        "addressCountry": "ID"
+      }
+    }
+    </script>
     <!-- AOS CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- Google Fonts -->

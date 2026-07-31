@@ -21,12 +21,12 @@
     @foreach($galeri as $item)
       <div class="relative rounded-xl overflow-hidden group shadow-sm break-inside-avoid">
         <img src="{{ $item->image }}" class="w-full h-auto" />
-        <div class="absolute inset-0 bg-navy/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-            <form action="{{ route('admin.galeri.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Hapus foto ini?');">
+        <div class="border-t border-gray-100">
+            <form id="del-galeri-{{ $item->id }}" action="{{ route('admin.galeri.destroy', $item->id) }}" method="POST">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="bg-red-500 text-white p-3 rounded-full hover:bg-red-600 transition-colors shadow-lg">
-                    <i data-lucide="trash-2" class="w-5 h-5"></i>
+                <button type="button" onclick="confirmDelete('del-galeri-{{ $item->id }}', 'Hapus foto ini?')" class="w-full py-2.5 bg-red-50 hover:bg-red-600 text-red-600 hover:text-white font-poppins font-semibold text-sm transition-colors flex items-center justify-center gap-2">
+                    <i data-lucide="trash-2" class="w-4 h-4"></i> Hapus
                 </button>
             </form>
         </div>

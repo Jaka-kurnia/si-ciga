@@ -5,8 +5,6 @@
         <div class="aspect-video bg-gray-300 rounded-2xl overflow-hidden shadow-xl relative group">
           @php
               $imgProfil = $profil->where('key', 'image')->first()?->content ?? '/fotoSekolah/foto2.jpg';
-              $p1 = $profil->where('key', 'paragraf1')->first()?->content ?? 'Memuat profil...';
-              $p2 = $profil->where('key', 'paragraf2')->first()?->content ?? '';
           @endphp
           <img 
             src="{{ $imgProfil }}" 
@@ -18,8 +16,16 @@
       <div class="w-full md:w-1/2" data-aos="fade-left">
         <h2 class="text-3xl font-poppins font-bold text-navy mb-4">Tentang Kami</h2>
         <div class="w-20 h-1 bg-gold mb-6 rounded-full"></div>
-        <p class="font-montserrat text-gray-600 mb-4 leading-relaxed whitespace-pre-wrap">{{ $p1 }}</p>
-        <p class="font-montserrat text-gray-600 leading-relaxed whitespace-pre-wrap">{{ $p2 }}</p>
+        
+        @php
+            $paragraphs = $profil->where('key', '!=', 'image');
+        @endphp
+
+        @forelse($paragraphs as $item)
+            <p class="font-montserrat text-gray-600 mb-4 leading-relaxed whitespace-pre-wrap">{{ $item->content }}</p>
+        @empty
+            <p class="font-montserrat text-gray-600 mb-4 leading-relaxed whitespace-pre-wrap">Memuat profil...</p>
+        @endforelse
       </div>
     </div>
 
@@ -44,7 +50,7 @@
         @foreach($identitas as $index => $item)
           <div data-aos="fade-up" data-aos-delay="{{ $index * 100 }}" class="bg-[#F8FAFC] rounded-3xl p-4 sm:p-5 flex flex-col items-center text-center transition-transform hover:-translate-y-1 duration-300">
             <div class="w-10 h-10 rounded-xl bg-[#E0F2FE] flex items-center justify-center mb-3 text-[#0284C7]">
-              <i data-lucide="{{ $defaultIcons[$item->label] ?? 'award' }}" class="w-[18px] h-[18px]"></i>
+              <i data-lucide="{{ $defaultIcons[$item->label] ?? 'award' }}" class="w-4.5 h-4.5"></i>
             </div>
             <span class="block text-lg sm:text-xl lg:text-2xl font-poppins font-extrabold text-[#0284C7] mb-1 break-words w-full" title="{{ $item->value }}">
               {{ $item->value }}

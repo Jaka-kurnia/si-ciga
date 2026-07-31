@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
     <title>Admin CMS SDN 1 Cigalontang</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -46,35 +47,38 @@
                 
                 <nav class="flex flex-col space-y-3 w-full">
                     <a href="?tab=berita" class="flex items-center gap-3 px-4 py-3.5 rounded-2xl font-poppins font-semibold text-sm transition-all duration-300 w-full text-left {{ $tab === 'berita' ? 'bg-gold text-navy shadow-md transform scale-[1.02]' : 'bg-transparent hover:bg-white/10 text-gray-300 border border-transparent hover:border-white/20' }}">
-                        <i data-lucide="newspaper" class="w-[18px] h-[18px] {{ $tab === 'berita' ? 'text-navy' : 'text-gray-400' }}"></i> Berita & Kegiatan
+                        <i data-lucide="megaphone" class="w-4.5 h-4.5 {{ $tab === 'berita' ? 'text-navy' : 'text-gray-400' }}"></i> Berita & Kegiatan
                     </a>
                     <a href="?tab=statistik" class="flex items-center gap-3 px-4 py-3.5 rounded-2xl font-poppins font-semibold text-sm transition-all duration-300 w-full text-left {{ $tab === 'statistik' ? 'bg-gold text-navy shadow-md transform scale-[1.02]' : 'bg-transparent hover:bg-white/10 text-gray-300 border border-transparent hover:border-white/20' }}">
-                        <i data-lucide="bar-chart-2" class="w-[18px] h-[18px] {{ $tab === 'statistik' ? 'text-navy' : 'text-gray-400' }}"></i> Statistik Sekolah
+                        <i data-lucide="bar-chart-2" class="w-4.5 h-4.5 {{ $tab === 'statistik' ? 'text-navy' : 'text-gray-400' }}"></i> Statistik Sekolah
                     </a>
                     <a href="?tab=identitas" class="flex items-center gap-3 px-4 py-3.5 rounded-2xl font-poppins font-semibold text-sm transition-all duration-300 w-full text-left {{ $tab === 'identitas' ? 'bg-gold text-navy shadow-md transform scale-[1.02]' : 'bg-transparent hover:bg-white/10 text-gray-300 border border-transparent hover:border-white/20' }}">
-                        <i data-lucide="building-2" class="w-[18px] h-[18px] {{ $tab === 'identitas' ? 'text-navy' : 'text-gray-400' }}"></i> Identitas & Kontak
+                        <i data-lucide="chart-column-big" class="w-4.5 h-4.5 {{ $tab === 'identitas' ? 'text-navy' : 'text-gray-400' }}"></i> Identitas & Kontak
                     </a>
                     <a href="?tab=profil" class="flex items-center gap-3 px-4 py-3.5 rounded-2xl font-poppins font-semibold text-sm transition-all duration-300 w-full text-left {{ $tab === 'profil' ? 'bg-gold text-navy shadow-md transform scale-[1.02]' : 'bg-transparent hover:bg-white/10 text-gray-300 border border-transparent hover:border-white/20' }}">
-                        <i data-lucide="file-text" class="w-[18px] h-[18px] {{ $tab === 'profil' ? 'text-navy' : 'text-gray-400' }}"></i> Profil (Tentang Kami)
+                        <i data-lucide="file-text" class="w-4.5 h-4.5 {{ $tab === 'profil' ? 'text-navy' : 'text-gray-400' }}"></i> Profil (Tentang Kami)
                     </a>
                     <a href="?tab=visimisi" class="flex items-center gap-3 px-4 py-3.5 rounded-2xl font-poppins font-semibold text-sm transition-all duration-300 w-full text-left {{ $tab === 'visimisi' ? 'bg-gold text-navy shadow-md transform scale-[1.02]' : 'bg-transparent hover:bg-white/10 text-gray-300 border border-transparent hover:border-white/20' }}">
-                        <i data-lucide="target" class="w-[18px] h-[18px] {{ $tab === 'visimisi' ? 'text-navy' : 'text-gray-400' }}"></i> Visi & Misi
+                        <i data-lucide="target" class="w-4.5 h-4.5 {{ $tab === 'visimisi' ? 'text-navy' : 'text-gray-400' }}"></i> Visi & Misi
                     </a>
                     <a href="?tab=pengajar" class="flex items-center gap-3 px-4 py-3.5 rounded-2xl font-poppins font-semibold text-sm transition-all duration-300 w-full text-left {{ $tab === 'pengajar' ? 'bg-gold text-navy shadow-md transform scale-[1.02]' : 'bg-transparent hover:bg-white/10 text-gray-300 border border-transparent hover:border-white/20' }}">
-                        <i data-lucide="users" class="w-[18px] h-[18px] {{ $tab === 'pengajar' ? 'text-navy' : 'text-gray-400' }}"></i> Struktur Tim Pengajar
+                        <i data-lucide="users" class="w-4.5 h-4.5 {{ $tab === 'pengajar' ? 'text-navy' : 'text-gray-400' }}"></i> Struktur Tim Pengajar
                     </a>
                     <a href="?tab=prestasi" class="flex items-center gap-3 px-4 py-3.5 rounded-2xl font-poppins font-semibold text-sm transition-all duration-300 w-full text-left {{ $tab === 'prestasi' ? 'bg-gold text-navy shadow-md transform scale-[1.02]' : 'bg-transparent hover:bg-white/10 text-gray-300 border border-transparent hover:border-white/20' }}">
-                        <i data-lucide="trophy" class="w-[18px] h-[18px] {{ $tab === 'prestasi' ? 'text-navy' : 'text-gray-400' }}"></i> Prestasi Unggulan
+                        <i data-lucide="trophy" class="w-4.5 h-4.5 {{ $tab === 'prestasi' ? 'text-navy' : 'text-gray-400' }}"></i> Prestasi Unggulan
                     </a>
                     <a href="?tab=galeri" class="flex items-center gap-3 px-4 py-3.5 rounded-2xl font-poppins font-semibold text-sm transition-all duration-300 w-full text-left {{ $tab === 'galeri' ? 'bg-gold text-navy shadow-md transform scale-[1.02]' : 'bg-transparent hover:bg-white/10 text-gray-300 border border-transparent hover:border-white/20' }}">
-                        <i data-lucide="image" class="w-[18px] h-[18px] {{ $tab === 'galeri' ? 'text-navy' : 'text-gray-400' }}"></i> Galeri Kegiatan
+                        <i data-lucide="image" class="w-4.5 h-4.5 {{ $tab === 'galeri' ? 'text-navy' : 'text-gray-400' }}"></i> Galeri Kegiatan
                     </a>
                 </nav>
 
                 <div class="mt-auto pt-6 border-t border-white/10 flex flex-col gap-3">
-                    <a href="/" class="w-full flex items-center justify-center gap-2 py-3 bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 font-poppins font-bold text-sm rounded-xl transition-colors border border-rose-500/20">
-                        Keluar Admin
-                    </a>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="w-full flex items-center justify-center gap-2 py-3 bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 font-poppins font-bold text-sm rounded-xl transition-colors border border-rose-500/20">
+                            Keluar Admin
+                        </button>
+                    </form>
                 </div>
             </aside>
 
@@ -114,6 +118,23 @@
     </div>
     <script>
         lucide.createIcons();
+        
+        function confirmDelete(formId, message) {
+            Swal.fire({
+                title: 'Apakah Anda Yakin?',
+                text: message || "Data ini akan dihapus secara permanen!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#ef4444',
+                cancelButtonColor: '#0D2B5E',
+                confirmButtonText: 'Ya, Hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById(formId).submit();
+                }
+            });
+        }
     </script>
 </body>
 </html>
