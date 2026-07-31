@@ -75,7 +75,7 @@
 
     <!-- SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-   @include('auth.script')
+    @include('auth.script')
 </body>
 
 </html>
