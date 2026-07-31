@@ -12,8 +12,7 @@
                 <i data-lucide="target" class="w-8 h-8 text-gold"></i>
             </div>
             <h3 class="text-2xl font-montserrat font-bold mb-4 text-gold">Visi</h3>
-            <p class="font-montserrat leading-relaxed text-gray-200 whitespace-pre-wrap">
-                {{ $visiMisi->where('type', 'visi')->first()?->content ?? 'Memuat Visi...' }}</p>
+            <p class="font-montserrat leading-relaxed text-gray-200 whitespace-pre-wrap">{{ $visiMisi->where('type', 'visi')->first()?->content ?? 'Memuat Visi...' }}</p>
         </div>
 
         <div class="flex-1 bg-white border border-gray-200 text-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl hover:border-gold/50 transition-all duration-300 transform hover:-translate-y-2 group"
