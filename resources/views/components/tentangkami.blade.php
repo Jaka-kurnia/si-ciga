@@ -50,7 +50,7 @@
         @foreach($identitas as $index => $item)
           <div data-aos="fade-up" data-aos-delay="{{ $index * 100 }}" class="bg-[#F8FAFC] rounded-3xl p-4 sm:p-5 flex flex-col items-center text-center transition-transform hover:-translate-y-1 duration-300">
             <div class="w-10 h-10 rounded-xl bg-[#E0F2FE] flex items-center justify-center mb-3 text-[#0284C7]">
-              <i data-lucide="{{ $defaultIcons[$item->label] ?? 'award' }}" class="w-[18px] h-[18px]"></i>
+              <i data-lucide="{{ $defaultIcons[$item->label] ?? 'award' }}" class="w-4.5 h-4.5"></i>
             </div>
             <span class="block text-lg sm:text-xl lg:text-2xl font-poppins font-extrabold text-[#0284C7] mb-1 break-words w-full" title="{{ $item->value }}">
               {{ $item->value }}
