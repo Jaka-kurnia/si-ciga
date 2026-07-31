@@ -59,7 +59,7 @@
             </div>
 
             <button type="submit"
-                class="w-full flex items-center justify-center gap-2 py-3.5 px-4 bg-gold hover:bg-white text-navy font-poppins font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                class="w-full flex items-center justify-center gap-2 py-3.5 px-4 bg-navy hover:bg-gold text-white font-poppins font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
                 <span>Login</span>
                 <i data-lucide="arrow-right" class="w-5 h-5"></i>
             </button>

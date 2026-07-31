@@ -10,12 +10,20 @@ class VisiMisiController extends Controller
 {
     public function store(Request $request)
     {
+        $request->validate([
+            'type' => 'required|string',
+            'content' => 'required|string',
+        ]);
         VisiMisi::create($request->all());
         return redirect()->back()->with(['success' => 'Data berhasil ditambahkan!', 'tab' => 'visimisi']);
     }
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'type' => 'required|string',
+            'content' => 'required|string',
+        ]);
         VisiMisi::findOrFail($id)->update($request->except(['_token', '_method']));
         return redirect()->back()->with(['success' => 'Data berhasil diupdate!', 'tab' => 'visimisi']);
     }

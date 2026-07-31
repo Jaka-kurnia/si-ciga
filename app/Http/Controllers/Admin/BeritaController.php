@@ -33,6 +33,13 @@ class BeritaController extends Controller
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'title' => 'required|string',
+            'date' => 'required|string',
+            'category' => 'required|string',
+            'excerpt' => 'required|string',
+        ]);
+        
         $berita = Berita::findOrFail($id);
         $data = $request->except(['_token', '_method', 'image']);
         if ($request->hasFile('image')) {

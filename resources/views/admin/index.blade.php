@@ -54,53 +54,68 @@
                 </div>
 
                 <nav class="flex flex-col space-y-3 w-full">
-                    <a href="?tab=berita"
-                        class="flex items-center gap-3 px-4 py-3.5 rounded-2xl font-poppins font-semibold text-sm transition-all duration-300 w-full text-left {{ $tab === 'berita' ? 'bg-gold text-navy shadow-md transform scale-[1.02]' : 'bg-transparent hover:bg-white/10 text-gray-300 border border-transparent hover:border-white/20' }}">
-                        <i data-lucide="megaphone"
-                            class="w-4.5 h-4.5 {{ $tab === 'berita' ? 'text-navy' : 'text-gray-400' }}"></i> Berita &
-                        Kegiatan
-                    </a>
-                    <a href="?tab=statistik"
-                        class="flex items-center gap-3 px-4 py-3.5 rounded-2xl font-poppins font-semibold text-sm transition-all duration-300 w-full text-left {{ $tab === 'statistik' ? 'bg-gold text-navy shadow-md transform scale-[1.02]' : 'bg-transparent hover:bg-white/10 text-gray-300 border border-transparent hover:border-white/20' }}">
-                        <i data-lucide="bar-chart-2"
-                            class="w-4.5 h-4.5 {{ $tab === 'statistik' ? 'text-navy' : 'text-gray-400' }}"></i>
-                        Statistik Sekolah
-                    </a>
-                    <a href="?tab=identitas"
-                        class="flex items-center gap-3 px-4 py-3.5 rounded-2xl font-poppins font-semibold text-sm transition-all duration-300 w-full text-left {{ $tab === 'identitas' ? 'bg-gold text-navy shadow-md transform scale-[1.02]' : 'bg-transparent hover:bg-white/10 text-gray-300 border border-transparent hover:border-white/20' }}">
-                        <i data-lucide="chart-column-big"
-                            class="w-4.5 h-4.5 {{ $tab === 'identitas' ? 'text-navy' : 'text-gray-400' }}"></i>
-                        Identitas & Kontak
-                    </a>
+                    <!-- 1. UTAMA / TENTANG KAMI -->
                     <a href="?tab=profil"
                         class="flex items-center gap-3 px-4 py-3.5 rounded-2xl font-poppins font-semibold text-sm transition-all duration-300 w-full text-left {{ $tab === 'profil' ? 'bg-gold text-navy shadow-md transform scale-[1.02]' : 'bg-transparent hover:bg-white/10 text-gray-300 border border-transparent hover:border-white/20' }}">
-                        <i data-lucide="file-text"
+                        <i data-lucide="layers-2"
                             class="w-4.5 h-4.5 {{ $tab === 'profil' ? 'text-navy' : 'text-gray-400' }}"></i> Profil
-                        (Tentang Kami)
+                        Sekolah
                     </a>
+
+                    <!-- 2. VISI & MISI -->
                     <a href="?tab=visimisi"
                         class="flex items-center gap-3 px-4 py-3.5 rounded-2xl font-poppins font-semibold text-sm transition-all duration-300 w-full text-left {{ $tab === 'visimisi' ? 'bg-gold text-navy shadow-md transform scale-[1.02]' : 'bg-transparent hover:bg-white/10 text-gray-300 border border-transparent hover:border-white/20' }}">
                         <i data-lucide="target"
                             class="w-4.5 h-4.5 {{ $tab === 'visimisi' ? 'text-navy' : 'text-gray-400' }}"></i> Visi &
                         Misi
                     </a>
+
+                    <!-- 3. STRUKTUR ORGANISASI / PENGAJAR -->
                     <a href="?tab=pengajar"
                         class="flex items-center gap-3 px-4 py-3.5 rounded-2xl font-poppins font-semibold text-sm transition-all duration-300 w-full text-left {{ $tab === 'pengajar' ? 'bg-gold text-navy shadow-md transform scale-[1.02]' : 'bg-transparent hover:bg-white/10 text-gray-300 border border-transparent hover:border-white/20' }}">
                         <i data-lucide="users"
                             class="w-4.5 h-4.5 {{ $tab === 'pengajar' ? 'text-navy' : 'text-gray-400' }}"></i> Struktur
                         Tim Pengajar
                     </a>
+
+                    <!-- 4. STATISTIK SEKOLAH -->
+                    <a href="?tab=statistik"
+                        class="flex items-center gap-3 px-4 py-3.5 rounded-2xl font-poppins font-semibold text-sm transition-all duration-300 w-full text-left {{ $tab === 'statistik' ? 'bg-gold text-navy shadow-md transform scale-[1.02]' : 'bg-transparent hover:bg-white/10 text-gray-300 border border-transparent hover:border-white/20' }}">
+                        <i data-lucide="bar-chart-2"
+                            class="w-4.5 h-4.5 {{ $tab === 'statistik' ? 'text-navy' : 'text-gray-400' }}"></i>
+                        Statistik Sekolah
+                    </a>
+
+                    <!-- 5. PRESTASI -->
                     <a href="?tab=prestasi"
                         class="flex items-center gap-3 px-4 py-3.5 rounded-2xl font-poppins font-semibold text-sm transition-all duration-300 w-full text-left {{ $tab === 'prestasi' ? 'bg-gold text-navy shadow-md transform scale-[1.02]' : 'bg-transparent hover:bg-white/10 text-gray-300 border border-transparent hover:border-white/20' }}">
                         <i data-lucide="trophy"
                             class="w-4.5 h-4.5 {{ $tab === 'prestasi' ? 'text-navy' : 'text-gray-400' }}"></i> Prestasi
                         Unggulan
                     </a>
+
+                    <!-- 6. BERITA & KEGIATAN -->
+                    <a href="?tab=berita"
+                        class="flex items-center gap-3 px-4 py-3.5 rounded-2xl font-poppins font-semibold text-sm transition-all duration-300 w-full text-left {{ $tab === 'berita' ? 'bg-gold text-navy shadow-md transform scale-[1.02]' : 'bg-transparent hover:bg-white/10 text-gray-300 border border-transparent hover:border-white/20' }}">
+                        <i data-lucide="megaphone"
+                            class="w-4.5 h-4.5 {{ $tab === 'berita' ? 'text-navy' : 'text-gray-400' }}"></i> Berita &
+                        Kegiatan
+                    </a>
+
+                    <!-- 7. GALERI KEGIATAN -->
                     <a href="?tab=galeri"
                         class="flex items-center gap-3 px-4 py-3.5 rounded-2xl font-poppins font-semibold text-sm transition-all duration-300 w-full text-left {{ $tab === 'galeri' ? 'bg-gold text-navy shadow-md transform scale-[1.02]' : 'bg-transparent hover:bg-white/10 text-gray-300 border border-transparent hover:border-white/20' }}">
                         <i data-lucide="image"
                             class="w-4.5 h-4.5 {{ $tab === 'galeri' ? 'text-navy' : 'text-gray-400' }}"></i> Galeri
                         Kegiatan
+                    </a>
+
+                    <!-- 8. IDENTITAS & KONTAK (PALING BISA DIBUTUHKAN DI AKHIR/FOOTER) -->
+                    <a href="?tab=identitas"
+                        class="flex items-center gap-3 px-4 py-3.5 rounded-2xl font-poppins font-semibold text-sm transition-all duration-300 w-full text-left {{ $tab === 'identitas' ? 'bg-gold text-navy shadow-md transform scale-[1.02]' : 'bg-transparent hover:bg-white/10 text-gray-300 border border-transparent hover:border-white/20' }}">
+                        <i data-lucide="contact-2"
+                            class="w-4.5 h-4.5 {{ $tab === 'identitas' ? 'text-navy' : 'text-gray-400' }}"></i>
+                        Identitas & Kontak
                     </a>
                 </nav>
 
@@ -170,6 +185,80 @@
                 }
             });
         }
+
+        // Global Form Validation Listener
+        document.addEventListener('DOMContentLoaded', () => {
+            const forms = document.querySelectorAll('form');
+            forms.forEach(form => {
+                // Nonaktifkan tooltip validasi bawaan browser (HTML5) agar JS/SweetAlert bisa berjalan
+                form.setAttribute('novalidate', 'novalidate');
+
+                // Skip the delete forms which are handled by confirmDelete
+                if (form.id && form.id.startsWith('del-')) return;
+                
+                form.addEventListener('submit', function(e) {
+                    // Find all required inputs/textareas within this form
+                    const requiredElements = form.querySelectorAll('input[required], textarea[required], select[required]');
+                    let firstEmptyLabel = null;
+
+                    for (let el of requiredElements) {
+                        if (!el.value.trim()) {
+                            // Find the label for this element
+                            let label = 'Bidang ini';
+                            
+                            // Try to find a previous element sibling that is a label
+                            const prevElement = el.previousElementSibling;
+                            if (prevElement && prevElement.tagName === 'LABEL') {
+                                label = prevElement.innerText.replace('*', '').trim();
+                            } else {
+                                // Try to find label wrapping the input
+                                const parentLabel = el.closest('label');
+                                if (parentLabel) {
+                                    label = parentLabel.innerText.replace('*', '').trim();
+                                }
+                            }
+                            
+                            firstEmptyLabel = label;
+                            break; // Stop at the first empty required field
+                        }
+                    }
+
+                    if (firstEmptyLabel) {
+                        e.preventDefault();
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Data Tidak Lengkap',
+                            text: `Harap isi ${firstEmptyLabel} terlebih dahulu!`,
+                            confirmButtonColor: '#1e293b',
+                            confirmButtonText: 'Mengerti',
+                            customClass: {
+                                popup: 'rounded-2xl',
+                                title: 'font-poppins font-bold',
+                                htmlContainer: 'font-montserrat',
+                                confirmButton: 'font-poppins font-bold rounded-xl px-6 py-2.5 text-white'
+                            }
+                        });
+                    }
+                });
+            });
+        });
+
+        // Global Backend Validation Errors
+        @if ($errors->any())
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal Menyimpan',
+                text: '{{ $errors->first() }}',
+                confirmButtonColor: '#1e293b',
+                confirmButtonText: 'Tutup',
+                customClass: {
+                    popup: 'rounded-2xl',
+                    title: 'font-poppins font-bold',
+                    htmlContainer: 'font-montserrat',
+                    confirmButton: 'font-poppins font-bold rounded-xl px-6 py-2.5 text-white'
+                }
+            });
+        @endif
     </script>
 </body>
 

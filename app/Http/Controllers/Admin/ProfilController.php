@@ -27,6 +27,9 @@ class ProfilController extends Controller
     public function update(Request $request)
     {
         if ($request->has('profil')) {
+            $request->validate([
+                'profil.*.content' => 'required|string',
+            ]);
             foreach ($request->profil as $profData) {
                 if (isset($profData['id'])) {
                     Profil::where('id', $profData['id'])->update([

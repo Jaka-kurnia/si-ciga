@@ -21,6 +21,10 @@ class StatistikController extends Controller
     public function update(Request $request)
     {
         if ($request->has('statistik')) {
+            $request->validate([
+                'statistik.*.label' => 'required|string',
+                'statistik.*.count' => 'required|string',
+            ]);
             foreach ($request->statistik as $statData) {
                 if (isset($statData['id'])) {
                     Statistik::where('id', $statData['id'])->update([

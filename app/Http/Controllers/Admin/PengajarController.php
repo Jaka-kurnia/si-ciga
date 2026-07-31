@@ -19,6 +19,10 @@ class PengajarController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|string',
+            'position' => 'required|string',
+        ]);
         $data = $request->all();
         if ($request->hasFile('image')) {
             $data['image'] = $this->uploadImage($request, 'image', 'pengajar');
@@ -29,6 +33,10 @@ class PengajarController extends Controller
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'name' => 'required|string',
+            'position' => 'required|string',
+        ]);
         $data = $request->except(['_token', '_method', 'image']);
         if ($request->hasFile('image')) {
             $data['image'] = $this->uploadImage($request, 'image', 'pengajar');

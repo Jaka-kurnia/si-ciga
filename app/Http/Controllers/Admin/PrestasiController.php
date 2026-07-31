@@ -19,6 +19,12 @@ class PrestasiController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required|string',
+            'category' => 'required|string',
+            'students' => 'required|string',
+            'message' => 'required|string',
+        ]);
         $data = $request->all();
         if ($request->hasFile('image')) {
             $data['image'] = $this->uploadImage($request, 'image', 'prestasi');
@@ -29,6 +35,12 @@ class PrestasiController extends Controller
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'title' => 'required|string',
+            'category' => 'required|string',
+            'students' => 'required|string',
+            'message' => 'required|string',
+        ]);
         $data = $request->except(['_token', '_method', 'image']);
         if ($request->hasFile('image')) {
             $data['image'] = $this->uploadImage($request, 'image', 'prestasi');

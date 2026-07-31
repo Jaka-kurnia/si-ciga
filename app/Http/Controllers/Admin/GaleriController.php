@@ -19,6 +19,12 @@ class GaleriController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'image' => 'required|image'
+        ], [
+            'image.required' => 'Foto dokumentasi wajib diunggah.'
+        ]);
+
         if ($request->hasFile('image')) {
             $path = $this->uploadImage($request, 'image', 'galeri');
             Galeri::create(['image' => $path]);
