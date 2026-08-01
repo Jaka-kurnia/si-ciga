@@ -22,6 +22,9 @@ class PengajarController extends Controller
         $request->validate([
             'name' => 'required|string',
             'position' => 'required|string',
+            'image' => 'nullable|image|max:700',
+        ], [
+            'image.max' => 'Ukuran foto maksimal adalah 700KB.'
         ]);
         $data = $request->all();
         if ($request->hasFile('image')) {
@@ -36,6 +39,9 @@ class PengajarController extends Controller
         $request->validate([
             'name' => 'required|string',
             'position' => 'required|string',
+            'image' => 'nullable|image|max:700',
+        ], [
+            'image.max' => 'Ukuran foto maksimal adalah 700KB.'
         ]);
         $data = $request->except(['_token', '_method', 'image']);
         if ($request->hasFile('image')) {

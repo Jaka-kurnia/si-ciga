@@ -5,31 +5,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Primary Meta Tags -->
-    <title>SDN 1 Cigalontang | Cerdas, Terampil, Beriman</title>
-    <meta name="title" content="SDN 1 Cigalontang | Cerdas, Terampil, Beriman">
+    <title>SDN 1 Cigalontang | Sekolah Dasar Tasikmalaya</title>
+    <meta name="title" content="SDN 1 Cigalontang | Sekolah Dasar Tasikmalaya">
     <meta name="description"
-        content="Website resmi SD Negeri 1 Cigalontang. Menampilkan profil, visi misi, data statistik, prestasi unggulan, serta berita terbaru seputar pendidikan dan kegiatan sekolah.">
+        content="Website resmi SD Negeri 1 Cigalontang Tasikmalaya. Temukan profil sekolah, visi misi, daftar guru, prestasi unggulan, ekstrakurikuler, dan berita kegiatan terbaru kami.">
     <meta name="keywords"
-        content="SDN 1 Cigalontang, Sekolah Dasar Cigalontang, SD Tasikmalaya, Pendidikan, Sekolah Dasar, KKN LP3I Tasik 01">
-    <meta name="author" content="Tim KKN LP3I Tasik 01">
-    <meta name="robots" content="index, follow">
+        content="SDN 1 Cigalontang, SD Negeri 1 Cigalontang, SD di Tasikmalaya, Sekolah Dasar Cigalontang, Pendidikan Dasar, SD Terbaik, Berita Sekolah, Guru SDN 1 Cigalontang">
+    <meta name="author" content="SDN 1 Cigalontang">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="language" content="Indonesian">
+    <link rel="canonical" href="{{ url('/') }}" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url('/') }}">
     <meta property="og:title" content="SDN 1 Cigalontang | Cerdas, Terampil, Beriman">
     <meta property="og:description"
-        content="Website resmi SD Negeri 1 Cigalontang. Menampilkan profil, visi misi, data statistik, prestasi unggulan, serta berita terbaru.">
+        content="Website resmi SD Negeri 1 Cigalontang Tasikmalaya. Temukan profil sekolah, visi misi, daftar guru, prestasi, dan berita terbaru kami.">
     <meta property="og:image" content="{{ asset('logo/logo.png') }}">
+    <meta property="og:site_name" content="SDN 1 Cigalontang">
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="{{ url('/') }}">
-    <meta property="twitter:title" content="SDN 1 Cigalontang | Cerdas, Terampil, Beriman">
-    <meta property="twitter:description"
-        content="Website resmi SD Negeri 1 Cigalontang. Menampilkan profil, visi misi, data statistik, prestasi unggulan, serta berita terbaru.">
-    <meta property="twitter:image" content="{{ asset('logo/logo.png') }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="{{ url('/') }}">
+    <meta name="twitter:title" content="SDN 1 Cigalontang | Cerdas, Terampil, Beriman">
+    <meta name="twitter:description"
+        content="Website resmi SD Negeri 1 Cigalontang Tasikmalaya. Temukan profil sekolah, daftar guru, dan berita terbaru kami.">
+    <meta name="twitter:image" content="{{ asset('logo/logo.png') }}">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ asset('logo/logo.png') }}">

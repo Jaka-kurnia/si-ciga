@@ -20,9 +20,10 @@ class GaleriController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'image' => 'required|image'
+            'image' => 'required|image|max:700'
         ], [
-            'image.required' => 'Foto dokumentasi wajib diunggah.'
+            'image.required' => 'Foto dokumentasi wajib diunggah.',
+            'image.max' => 'Ukuran foto maksimal adalah 700KB.'
         ]);
 
         if ($request->hasFile('image')) {

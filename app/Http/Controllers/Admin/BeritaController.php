@@ -24,6 +24,9 @@ class BeritaController extends Controller
             'date' => 'required|string',
             'category' => 'required|string',
             'excerpt' => 'required|string',
+            'image' => 'nullable|image|max:700',
+        ], [
+            'image.max' => 'Ukuran foto maksimal adalah 700KB.'
         ]);
         
         $data['image'] = $this->uploadImage($request, 'image', 'berita') ?? '';
@@ -38,6 +41,9 @@ class BeritaController extends Controller
             'date' => 'required|string',
             'category' => 'required|string',
             'excerpt' => 'required|string',
+            'image' => 'nullable|image|max:700',
+        ], [
+            'image.max' => 'Ukuran foto maksimal adalah 700KB.'
         ]);
         
         $berita = Berita::findOrFail($id);

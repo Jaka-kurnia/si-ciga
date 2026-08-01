@@ -26,6 +26,12 @@ class ProfilController extends Controller
 
     public function update(Request $request)
     {
+        $request->validate([
+            'image' => 'nullable|image|max:700'
+        ], [
+            'image.max' => 'Ukuran foto maksimal adalah 700KB.'
+        ]);
+
         if ($request->has('profil')) {
             $request->validate([
                 'profil.*.content' => 'required|string',

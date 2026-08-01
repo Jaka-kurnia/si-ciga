@@ -24,6 +24,9 @@ class PrestasiController extends Controller
             'category' => 'required|string',
             'students' => 'required|string',
             'message' => 'required|string',
+            'image' => 'nullable|image|max:700',
+        ], [
+            'image.max' => 'Ukuran foto maksimal adalah 700KB.'
         ]);
         $data = $request->all();
         if ($request->hasFile('image')) {
@@ -40,6 +43,9 @@ class PrestasiController extends Controller
             'category' => 'required|string',
             'students' => 'required|string',
             'message' => 'required|string',
+            'image' => 'nullable|image|max:700',
+        ], [
+            'image.max' => 'Ukuran foto maksimal adalah 700KB.'
         ]);
         $data = $request->except(['_token', '_method', 'image']);
         if ($request->hasFile('image')) {
